@@ -1,10 +1,10 @@
 package NonUseClasses;
 
-public class Class {
+public class Group {
 	private int classId;
 	private String className;
 
-	public Class(int class_id, String className) {
+	public Group(int class_id, String className) {
 		this.classId = class_id;
 		this.className = className;
 	}
@@ -17,4 +17,6 @@ public class Class {
 	String getClassName(){
 		return className;
 	}
+	
+	
 }
