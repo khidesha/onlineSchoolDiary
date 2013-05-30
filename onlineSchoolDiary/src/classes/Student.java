@@ -1,4 +1,4 @@
-package user;
+package classes;
 
 public class Student extends User {
 	public int class_id;

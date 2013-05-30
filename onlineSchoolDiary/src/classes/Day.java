@@ -1,5 +1,4 @@
-package user;
-
+package classes;
 public class Day {
 	public int day_id;
 	public String day_data;

@@ -1,4 +1,4 @@
-package NonUseClasses;
+package classes;
 
 public class Group {
 	private int classId;

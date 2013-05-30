@@ -1,4 +1,4 @@
-package user;
+package classes;
 
 public class Subject {
 	public int subject_id;

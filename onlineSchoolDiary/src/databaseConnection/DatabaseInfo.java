@@ -8,7 +8,7 @@ public class DatabaseInfo {
 	private Connection con;
 	
 	public DatabaseInfo(){
-		con = DBConnection.getConnection();
+//		con = DBConnection.getConnection();
 	}
 	
 	

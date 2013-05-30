@@ -1,4 +1,4 @@
-package user;
+package classes;
 
 public class School {
 	public int school_id;
