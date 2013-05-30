@@ -1,25 +1,10 @@
 package classes;
 
-public class School {
-	public int school_id;
-	public String school_name;
-	public int administrator_id;
+public class School extends User{
 	
-	public School(int schoolId, String schoolName, int administratorId) {
-		this.school_id = schoolId;
-		this.school_name = schoolName;
-		this.administrator_id = administratorId;
+	
+	public School(int userId, String userName, int schoolId) {
+		super(userId, userName, schoolId);
 	}
 	
-	public int getSchoolId() {
-		return school_id;
-	}
-	
-	public String getSchoolName() {
-		return school_name;
-	}
-	
-	public int getAdministratorId() {
-		return administrator_id;
-	}
 }

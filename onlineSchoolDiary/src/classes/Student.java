@@ -11,6 +11,4 @@ public class Student extends User {
 	public int getClassId() {
 		return class_id;
 	}
-	
-	
 }

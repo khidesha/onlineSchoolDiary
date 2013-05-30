@@ -1,18 +1,20 @@
 package classes;
 
+import java.sql.Date;
+
 public class Mark {
 	public int mark_id;
 	public int subject_id;
 	public int student_id;
-	public int day_id;
-	public String mark;
+	public Date mark_date;
+	public int mark;
 	public String comment;
 	
-	public Mark(int markId, int subjectId, int studentId, int dayId, String mark, String comment) {
+	public Mark(int markId, int subjectId, int studentId, Date markDate, int mark, String comment) {
 		this.mark_id = markId;
 		this.subject_id = subjectId;
 		this.student_id = studentId;
-		this.day_id = dayId;
+		this.mark_date = markDate;
 		this.mark = mark;
 		this.comment = comment;
 	}
@@ -29,11 +31,11 @@ public class Mark {
 		return student_id;
 	}
 	
-	public int getDayId() {
-		return day_id;
+	public Date getMarkDate() {
+		return  mark_date;
 	}
 	
-	public String getMark() {
+	public int getMark() {
 		return mark;
 	}
 	
@@ -41,7 +43,7 @@ public class Mark {
 		return comment;
 	}
 	
-	public void setMark(String new_mark) {
+	public void setMark(int new_mark) {
 		this.mark = new_mark;
 	}
 	
