@@ -93,5 +93,17 @@ public class GroupManager {
 		}
 		return null;
 	}
+	
+	public static int getGroupCount(int schoolID){
+		int count = 0;
+		try {
+			ResultSet res = statement.executeQuery("Select COUNT(*) from class where school_id = "+ schoolID);
+			count = res.getInt("count(*)");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return count;
+	}
 
 }
