@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class UserManager {
 
 	static Statement statement;
-
 	public UserManager(Statement statement) {
 		this.statement = statement;
 	}
