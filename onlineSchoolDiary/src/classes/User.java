@@ -4,12 +4,14 @@ public class User {
 	public int user_id;
 	public String user_name;
 	public int school_id;
+	public int status;
 
 	
-	public User(int userId, String userName, int schoolId) {
+	public User(int userId, String userName, int schoolId, int status) {
 		this.user_id = userId;
 		this.user_name = userName;
 		this.school_id = schoolId;
+		this.status = status;
 	}
 	
 	
@@ -26,6 +28,10 @@ public class User {
 		return school_id;
 	}
 	
+	public int getStatus() {
+		return status;
+	}
+	
 	public void setUserId(int userId) {
 		this.user_id = userId;
 	}
@@ -38,5 +44,8 @@ public class User {
 		this.school_id = schoolId;
 	}
 	
+	public void setUserStatus(int status) {
+		this.status = status;
+	}
 	
 }

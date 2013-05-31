@@ -3,12 +3,15 @@ package servlets;
 import java.io.IOException;
 import java.sql.Statement;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import classes.User;
 import classes.UserManager;
 
 /**
@@ -39,9 +42,25 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("userName");
 		String password = request.getParameter("pass");
-		UserManager user =  (UserManager)getServletContext().getAttribute("usermanager");
-		user.createUser(1, username, 1, password, "2", "asd", 1);
-		
+		UserManager userMan =  (UserManager)getServletContext().getAttribute("usermanager");
+		User user = userMan.getUser(userMan.getUserIdWithLoginInfo(username, password));
+		HttpSession session = request.getSession();
+		session.setAttribute("user", user);
+		if(user.status == 0){
+			RequestDispatcher dispatch = request
+					.getRequestDispatcher(".jsp");
+			dispatch.forward(request, response);
+		}
+		if(user.status == 1){
+			RequestDispatcher dispatch = request
+					.getRequestDispatcher(".jsp");
+			dispatch.forward(request, response);
+		}
+		if(user.status == 2){
+			RequestDispatcher dispatch = request
+					.getRequestDispatcher(".jsp");
+			dispatch.forward(request, response);
+		}
 	}
 
 }
