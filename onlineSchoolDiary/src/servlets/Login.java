@@ -1,11 +1,15 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.Statement;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import classes.UserManager;
 
 /**
  * Servlet implementation class Login
@@ -35,6 +39,8 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("userName");
 		String password = request.getParameter("pass");
+		UserManager user =  (UserManager)getServletContext().getAttribute("usermanager");
+		user.createUser(1, username, 1, password, "2", "asd", 1);
 		
 	}
 
