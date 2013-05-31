@@ -84,7 +84,8 @@ public class GroupManager {
 			ResultSet set = statement.executeQuery("Select * from class where group_id=" + group_id);
 			set.next();
 			String className = set.getString("class_name");
-			Group group = new Group(group_id, className);
+			int schoolId = set.getInt("school_id");
+			Group group = new Group(group_id, className, schoolId);
 			return group;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

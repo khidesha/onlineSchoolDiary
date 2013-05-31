@@ -43,7 +43,9 @@ public class Login extends HttpServlet {
 		String username = request.getParameter("userName");
 		String password = request.getParameter("pass");
 		UserManager userMan =  (UserManager)getServletContext().getAttribute("usermanager");
+		System.out.println(userMan.getUser(1).user_name);
 		User user = userMan.getUser(userMan.getUserIdWithLoginInfo(username, password));
+		System.out.println(user.getStatus());
 		HttpSession session = request.getSession();
 		session.setAttribute("user", user);
 		if(user.status == 0){
@@ -53,7 +55,7 @@ public class Login extends HttpServlet {
 		}
 		if(user.status == 1){
 			RequestDispatcher dispatch = request
-					.getRequestDispatcher(".jsp");
+					.getRequestDispatcher("teacherLogIn.jsp");
 			dispatch.forward(request, response);
 		}
 		if(user.status == 2){

@@ -71,20 +71,20 @@ public class UserManager {
 					.executeQuery("Select * from users where user_id=" + userId);
 			set.next();
 			String status = set.getString("user_type");
-			if(status == "0") {
+			if(status.equals("0")) {
 				ResultSet set1 = statement.executeQuery("Select * from school where school_id=" + userId);
 				String name = set1.getString("school_name");
 				School school = new School(userId, name, userId, 0);
 				return school;
 			}
-			if(status == "1") {
+			if(status.equals("1")) {
 				ResultSet set1 = statement.executeQuery("Select * from teachers where teacher_id=" + userId);
 				String name = set1.getString("teacher_name");
 				int schoolId = set1.getInt("school_id");
 				Teacher teacher = new Teacher(userId, name, schoolId, 1);
 				return teacher;
 			}
-			if(status == "2") {
+			if(status.equals("2")) {
 				ResultSet set1 = statement.executeQuery("Select * from studentes where student_id=" + userId);
 				String name = set1.getString("student_name");
 				int schoolId = set1.getInt("school_id");

@@ -3,10 +3,11 @@ package classes;
 public class Group {
 	private int classId;
 	private String className;
-
-	public Group(int class_id, String className) {
+	private int schoolId;
+	public Group(int class_id, String className, int schoolId) {
 		this.classId = class_id;
 		this.className = className;
+		this.schoolId = schoolId;
 	}
 	
 	int getClassId(){
@@ -18,5 +19,7 @@ public class Group {
 		return className;
 	}
 	
-	
+	int getSchoolId(){
+		return schoolId;
+	}
 }
