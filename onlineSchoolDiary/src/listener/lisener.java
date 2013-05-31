@@ -49,6 +49,7 @@ public class lisener implements ServletContextListener {
 				new MarkManager((Statement) manager.getStatement()));
 		arg0.getServletContext().setAttribute("commentmanager",
 				new DayCommentManager((Statement) manager.getStatement()));
+		arg0.getServletContext().setAttribute("id_count", new Integer(1));
     }
 
 	/**
