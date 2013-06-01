@@ -18,14 +18,14 @@
 		HttpSession ses = request.getSession();
 		User user = (User) ses.getAttribute("user");
 		int teacherId = user.getUserId();
-		teacherManager tm = (teacherManager)getServletContext().getAttribute("subjectmanager");
+		teacherManager tm = (teacherManager)getServletContext().getAttribute("teachermanager");
 		ArrayList<Subject> arr = tm.getSubjectes(teacherId);
 		for (int i = 0; i < arr.size(); i++) {
+			System.out.println(arr.get(i).subject_name);
 			out.println("<b><ul><li><a href=\"groupsForLectures.jsp?subject="
-					+ arr.get(i).subject_name
+					+ arr.get(i).subject_name + "\">" + arr.get(i).subject_name
 					+ "</a></li></ul></b>");
 		}
 	%>
-	<a href="AccountSettings.jsp">Account Settings</a>
 </body>
 </html>

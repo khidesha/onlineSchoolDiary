@@ -10,6 +10,7 @@ import classes.UserManager;
 import classes.DBManager;
 import classes.GroupManager;
 import classes.SubjectManager;
+import classes.teacherManager;
 
 import com.mysql.jdbc.Statement;
 
@@ -49,6 +50,8 @@ public class lisener implements ServletContextListener {
 				new MarkManager((Statement) manager.getStatement()));
 		arg0.getServletContext().setAttribute("commentmanager",
 				new DayCommentManager((Statement) manager.getStatement()));
+		arg0.getServletContext().setAttribute("teachermanager",
+				new teacherManager((Statement) manager.getStatement()));
 		arg0.getServletContext().setAttribute("id_count", new Integer(1));
     }
 
