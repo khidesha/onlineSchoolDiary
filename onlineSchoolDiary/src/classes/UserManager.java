@@ -40,7 +40,7 @@ public class UserManager {
 		try {
 
 			ResultSet set = statement
-					.executeQuery("Select * from users where user_name=" + userName +" and user_pass="+password);
+					.executeQuery("Select * from users where user_name=\'" + userName +"\' and user_pass=\'"+password+"'");
 			set.next();
 			int id = set.getInt("user_id");
 			return id;
@@ -79,6 +79,7 @@ public class UserManager {
 			}
 			if(status.equals("1")) {
 				ResultSet set1 = statement.executeQuery("Select * from teachers where teacher_id=" + userId);
+				set1.next();
 				String name = set1.getString("teacher_name");
 				int schoolId = set1.getInt("school_id");
 				Teacher teacher = new Teacher(userId, name, schoolId, 1);

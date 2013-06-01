@@ -43,7 +43,6 @@ public class Login extends HttpServlet {
 		String username = request.getParameter("userName");
 		String password = request.getParameter("pass");
 		UserManager userMan =  (UserManager)getServletContext().getAttribute("usermanager");
-		System.out.println(userMan.getUser(1).user_name);
 		User user = userMan.getUser(userMan.getUserIdWithLoginInfo(username, password));
 		System.out.println(user.getStatus());
 		HttpSession session = request.getSession();
