@@ -13,10 +13,10 @@ public class GroupManager {
 		this.statement = statement;
 	}
 
-		public boolean createGroup(String className, int classId) {
+		public boolean createGroup(String className, int classId, int schoolId) {
 		try {
-			statement.executeUpdate("Insert into class values("
-					+ classId + "," + className + ");");
+			statement.executeUpdate("Insert into class values( "
+					+ classId + ", \'" + className + "\', " + schoolId +");");
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -94,10 +94,11 @@ public class GroupManager {
 		return null;
 	}
 	
-	public static int getGroupCount(int schoolID){
+	public static int getGroupCount(){
 		int count = 0;
 		try {
-			ResultSet res = statement.executeQuery("Select COUNT(*) from class where school_id = "+ schoolID);
+			ResultSet res = statement.executeQuery("Select COUNT(*) from class");
+			res.next();
 			count = res.getInt("count(*)");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

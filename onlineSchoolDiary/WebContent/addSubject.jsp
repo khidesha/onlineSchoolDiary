@@ -7,10 +7,13 @@
 <title>Add Subject</title>
 </head>
 <body>
-	<form action="/addSubject" method="post">
+	<form action="/onlineSchoolDiary/addSubject" method="post">
 		Subject name:<input type="text" name="subject">
 		Teacher ID:<input type="text" name="teacherID">
 		Group ID:<input type="text" name="groupID">
+		<input type="submit" value="Submit">
 	</form>
+	<br>
+	<a href="/onlineSchoolDiary/adminPage.jsp">Back to Admin Page</a>
 </body>
 </html>

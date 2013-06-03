@@ -73,6 +73,7 @@ public class UserManager {
 			String status = set.getString("user_type");
 			if(status.equals("0")) {
 				ResultSet set1 = statement.executeQuery("Select * from school where school_id=" + userId);
+				set1.next();
 				String name = set1.getString("school_name");
 				School school = new School(userId, name, userId, 0);
 				return school;
@@ -88,6 +89,7 @@ public class UserManager {
 			if(status.equals("2")) {
 				ResultSet set1 = statement.executeQuery("Select * from studentes where student_id=" + userId);
 				String name = set1.getString("student_name");
+				set1.next();
 				int schoolId = set1.getInt("school_id");
 				int classId = set1.getInt("class_id");
 				Student student = new Student(userId, name, schoolId, classId, 2);
@@ -98,6 +100,19 @@ public class UserManager {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public static int getUserCount(){
+		int count = 0;
+		try {
+			ResultSet set = statement.executeQuery("SELECT count(*) from users");
+			set.next();
+			count = set.getInt("count(*)");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return count;
 	}
 
 }

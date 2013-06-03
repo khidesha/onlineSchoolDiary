@@ -41,14 +41,11 @@ public class addTeacher extends HttpServlet {
 		String name = request.getParameter("username");
 		String password = request.getParameter("password");
 		String fullname = request.getParameter("fullname");
-		User tmp = (User)request.getAttribute("user");
+		User tmp = (User)request.getSession().getAttribute("user");
 		int schoolID = tmp.getSchoolId();
 		UserManager addUser = (UserManager)getServletContext().getAttribute("usermanager");
-		GroupManager groupCount = (GroupManager)getServletContext().getAttribute("groupmanager");
-		int countID = (Integer)getServletContext().getAttribute("id_count");
+		int countID = UserManager.getUserCount()+1;
 		addUser.createUser(countID, name, schoolID, password, "1", fullname, 0);
-		countID ++;
-		getServletContext().setAttribute("id_count", countID);
 		RequestDispatcher dispatch = request.getRequestDispatcher("/addTeacher.jsp");
 		dispatch.forward(request, response);
 	}

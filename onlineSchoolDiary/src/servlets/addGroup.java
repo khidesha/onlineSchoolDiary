@@ -1,11 +1,16 @@
 package servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import classes.GroupManager;
+import classes.User;
 
 /**
  * Servlet implementation class addGroup
@@ -33,7 +38,14 @@ public class addGroup extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		String groupName = request.getParameter("groupname");
+		User tmp = (User)request.getSession().getAttribute("user");
+		int schoolID = tmp.getSchoolId();
+		GroupManager grManager = (GroupManager)getServletContext().getAttribute("groupmanager");
+		int groupID = GroupManager.getGroupCount() + 1;
+		grManager.createGroup(groupName, groupID, schoolID);
+		RequestDispatcher dispatch = request.getRequestDispatcher("/addGroup.jsp");
+		dispatch.forward(request, response);
 	}
 
 }

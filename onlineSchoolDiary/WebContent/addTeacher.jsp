@@ -7,10 +7,13 @@
 <title>Add Teacher</title>
 </head>
 <body>
-	<form action="/addTeacher" method="post">
+	<form action="/onlineSchoolDiary/addTeacher" method="post">
 		Username:<input type="text" name="username">
 		Password:<input type="password" name="password">
 		Fullname:<input type="text" name="fullname">
+		<input type="submit" value="Submit">
 	</form>
+	<br>
+	<a href="/onlineSchoolDiary/adminPage.jsp">Back to Admin Page</a>
 </body>
 </html>

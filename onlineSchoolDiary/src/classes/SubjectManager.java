@@ -16,7 +16,7 @@ public class SubjectManager {
 		public boolean createSubject(int subjectId, String subjectName, int teacherId, int classId) {
 		try {
 			statement.executeUpdate("Insert into subjects values("
-					+ subjectId + ",/'" + subjectName + "/',"  + teacherId + "," + classId + ");");
+					+ subjectId + ",\'" + subjectName + "\',"  + teacherId + "," + classId + ");");
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -49,6 +49,19 @@ public class SubjectManager {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public static int getSubjectCount(){
+		int count = 0;
+		try {
+			ResultSet set = statement.executeQuery("Select count(*) from subjects");
+			set.next();
+			count = set.getInt("count(*)");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return count;
 	}
 
 }

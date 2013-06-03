@@ -44,12 +44,11 @@ public class Login extends HttpServlet {
 		String password = request.getParameter("pass");
 		UserManager userMan =  (UserManager)getServletContext().getAttribute("usermanager");
 		User user = userMan.getUser(userMan.getUserIdWithLoginInfo(username, password));
-		System.out.println(user.getStatus());
 		HttpSession session = request.getSession();
 		session.setAttribute("user", user);
 		if(user.status == 0){
 			RequestDispatcher dispatch = request
-					.getRequestDispatcher(".jsp");
+					.getRequestDispatcher("adminPage.jsp");
 			dispatch.forward(request, response);
 		}
 		if(user.status == 1){

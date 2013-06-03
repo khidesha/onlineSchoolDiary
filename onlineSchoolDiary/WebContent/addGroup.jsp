@@ -7,8 +7,11 @@
 <title>Add Group</title>
 </head>
 <body>
-	<form action="/addGroup" method="post">
+	<form action="/onlineSchoolDiary/addGroup" method="post">
 		Group name:<input type="text" name="groupname">
+		<input type="submit" value="Submit">
 	</form>
+	<br>
+	<a href="/onlineSchoolDiary/adminPage.jsp">Back to Admin Page</a>
 </body>
 </html>
