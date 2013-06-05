@@ -10,16 +10,16 @@ public class Group {
 		this.schoolId = schoolId;
 	}
 	
-	int getClassId(){
+	public int getClassId(){
 		return classId;
 	}
 	
 	
-	String getClassName(){
+	public String getClassName(){
 		return className;
 	}
 	
-	int getSchoolId(){
+	public int getSchoolId(){
 		return schoolId;
 	}
 }
