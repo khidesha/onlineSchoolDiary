@@ -40,7 +40,7 @@ public class UserManager {
 		try {
 
 			ResultSet set = statement
-					.executeQuery("Select * from users where user_name=\'" + userName +"\' and user_pass=\'"+password+"'");
+					.executeQuery("Select * from users where user_name=\'" + userName +"\' and user_pass=\'"+password+"\'");
 			set.next();
 			int id = set.getInt("user_id");
 			return id;

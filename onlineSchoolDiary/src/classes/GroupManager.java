@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.sun.org.apache.bcel.internal.generic.NEWARRAY;
+
 public class GroupManager {
 
 	static Statement statement;
@@ -81,7 +83,7 @@ public class GroupManager {
 	public static Group getGroup(int group_id) {
 		try {
 
-			ResultSet set = statement.executeQuery("Select * from class where group_id=" + group_id);
+			ResultSet set = statement.executeQuery("Select * from class where class_id=" + group_id);
 			set.next();
 			String className = set.getString("class_name");
 			int schoolId = set.getInt("school_id");
@@ -92,6 +94,25 @@ public class GroupManager {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public static ArrayList<Group> getGroupBySubject(String subjectName){
+		ArrayList<Group> groups = new ArrayList<Group>();
+		try {
+			ResultSet rs = statement.executeQuery("select c1.class_id, c1.class_name, c1.school_id from class c1 left join subjects on subjects.class_id = c1.class_id where subject_name ='" + subjectName+"' order by c1.class_name");
+			while(rs.next()){
+				int groupID = rs.getInt("class_id");
+				String className = rs.getString("class_name");
+				int schoolId = rs.getInt("school_id");
+				Group gr = new Group(groupID, className, schoolId);
+				groups.add(gr);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("group_size =" + groups.size());
+		return groups;
 	}
 	
 	public static int getGroupCount(){

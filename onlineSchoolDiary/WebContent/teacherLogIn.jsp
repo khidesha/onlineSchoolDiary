@@ -1,3 +1,5 @@
+<%@page import="classes.GroupManager"%>
+<%@page import="classes.Group"%>
 <%@page import="classes.teacherManager"%>
 <%@page import="classes.Subject"%>
 <%@page import="java.util.ArrayList"%>
@@ -10,22 +12,39 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Teacher Page</title>
 </head>
 <body>
 	<h1>Subjects:</h1>
+	<b><ul>
 	<%
 		HttpSession ses = request.getSession();
 		User user = (User) ses.getAttribute("user");
 		int teacherId = user.getUserId();
 		teacherManager tm = (teacherManager)getServletContext().getAttribute("teachermanager");
 		ArrayList<Subject> arr = tm.getSubjectes(teacherId);
-		for (int i = 0; i < arr.size(); i++) {
-			System.out.println(arr.get(i).subject_name);
-			out.println("<b><ul><li><a href=\"groupsForLectures.jsp?subject="
-					+ arr.get(i).subject_name + "\">" + arr.get(i).subject_name
-					+ "</a></li></ul></b>");
+		
+		for(Subject subj: arr){			
+	%>	
+			<li>
+				<%=subj.getSubjectName()%> &nbsp;&nbsp;
+				<form action="showGroup.jsp?groupID=<%=subj.getClassId()%>" method="post">
+					Class:<select name="classList">
+					<%
+						for(Group gr: GroupManager.getGroupBySubject(subj.getSubjectName())){
+					%>
+							<option value="<%=gr.getClassId()%>"><%=gr.getClassName()%> </option>
+					<% 
+						}
+					%>
+					</select>
+					<input type="submit" value="Select">
+				</form>
+			</li>
+	<% 
 		}
-	%>
+	%>		
+	
+	</ul></b>
 </body>
 </html>

@@ -4,6 +4,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.print.attribute.HashAttributeSet;
 
 public class teacherManager {
 	static Statement statement;
@@ -16,6 +20,7 @@ public class teacherManager {
 	public static ArrayList<Subject> getSubjectes(int teacherId) {
 		try {
 			ArrayList<Subject> arr = new ArrayList<Subject>();
+			Set<String> subjects = new HashSet<String>();
 			int subjectId;
 			int classId;
 			String subjectName;
@@ -26,7 +31,10 @@ public class teacherManager {
 				classId = set.getInt("class_id");
 				subjectName = set.getString("subject_name");
 				subject = new Subject(subjectId, subjectName, teacherId, classId);
-				arr.add(subject);
+				if(!subjects.contains(subjectName)){
+					arr.add(subject);
+					subjects.add(subjectName);
+				}
 			}
 			return arr;
 			
