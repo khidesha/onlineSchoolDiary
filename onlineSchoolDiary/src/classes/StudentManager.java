@@ -20,12 +20,14 @@ public class StudentManager {
 			int teacherId;
 			String subjectName;
 			Subject subject;
+			int schoolId;
 			ResultSet set = statement.executeQuery("Select * from subjects where class_id=" + classId);
 			while (set.next()) {
 				subjectId = set.getInt("subject_id");
 				subjectName = set.getString("subject_name");
 				teacherId = set.getInt("teacher_id");
-				subject = new Subject(subjectId, subjectName, teacherId, classId);
+				schoolId = set.getInt("school_id");
+				subject = new Subject(subjectId, subjectName, teacherId, classId,schoolId);
 				arr.add(subject);
 			}
 			return arr;
@@ -44,12 +46,14 @@ public class StudentManager {
 			int teacherId;
 			String subjectName;
 			Subject subject;
+			int schoolId;
 			ResultSet set = statement.executeQuery("Select * from subjects where class_id=" + classId);
 			while (set.next()) {
 				subjectId = set.getInt("subject_id");
 				subjectName = set.getString("subject_name");
 				teacherId = set.getInt("teacher_id");
-				subject = new Subject(subjectId, subjectName, teacherId, classId);
+				schoolId = set.getInt("school_id");
+				subject = new Subject(subjectId, subjectName, teacherId, classId,schoolId);
 				arr.add(subject);
 			}
 			return arr;

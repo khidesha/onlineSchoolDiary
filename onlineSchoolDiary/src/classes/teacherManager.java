@@ -25,12 +25,14 @@ public class teacherManager {
 			int classId;
 			String subjectName;
 			Subject subject;
+			int schoolId;
 			ResultSet set = statement.executeQuery("Select * from subjects where teacher_id=" + teacherId);
 			while (set.next()) {
 				subjectId = set.getInt("subject_id");
 				classId = set.getInt("class_id");
 				subjectName = set.getString("subject_name");
-				subject = new Subject(subjectId, subjectName, teacherId, classId);
+				schoolId = set.getInt("school_id");
+				subject = new Subject(subjectId, subjectName, teacherId, classId,schoolId);
 				if(!subjects.contains(subjectName)){
 					arr.add(subject);
 					subjects.add(subjectName);

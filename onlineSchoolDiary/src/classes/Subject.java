@@ -5,12 +5,14 @@ public class Subject {
 	public String subject_name;
 	public int teacher_id;
 	public int class_id;
+	public int school_id;
 	
-	public Subject(int subjectId, String subjectName, int teacherId, int classId) {
+	public Subject(int subjectId, String subjectName, int teacherId, int classId, int schoolId) {
 		this.subject_id = subjectId;
 		this.subject_name = subjectName;
 		this.teacher_id = teacherId;
 		this.class_id = classId;
+		this.school_id = schoolId;
 	}
 	
 	public int getSubjectId() {
@@ -29,5 +31,7 @@ public class Subject {
 		return class_id;
 	}
 	
-	
+	public int getSchoolId(){
+		return school_id;
+	}
 }

@@ -45,7 +45,7 @@ public class schoolManager {
 			while (set.next()) {
 				teacherId = set.getInt("teacher_id");
 				teacherName = set.getString("teacher_name");
-				teacher = new Teacher(teacherId, teacherName, schoolId,3);
+				teacher = new Teacher(teacherId, teacherName, schoolId,1);
 				arr.add(teacher);
 			}
 			return arr;
@@ -56,4 +56,55 @@ public class schoolManager {
 		}
 		return null;
 	}
+	
+	public static ArrayList<Student> getStudents(int schoolId) {
+		try {
+			ArrayList<Student> arr = new ArrayList<Student>();
+			int studentId;
+			int classId;
+			String studentName;
+			Student student;
+			ResultSet set = statement.executeQuery("Select * from students where school_id=" + schoolId);
+			while (set.next()) {
+				studentId = set.getInt("student_id");
+				classId = set.getInt("class_id");
+				studentName = set.getString("student_name");
+				student = new Student(studentId, studentName,schoolId, classId,2);
+				arr.add(student);
+			}
+			return arr;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public static ArrayList<Subject> getSubjects(int schoolId) {
+		try {
+			ArrayList<Subject> arr = new ArrayList<Subject>();
+			int subjectId;
+			int classId;
+			String subjectName;
+			int teacherId;
+			Subject subject;
+			ResultSet set = statement.executeQuery("Select * from subjects where school_id=" + schoolId);
+			while (set.next()) {
+				subjectId = set.getInt("subject_id");
+				classId = set.getInt("class_id");
+				teacherId = set.getInt("teacher_id");
+				subjectName = set.getString("subject_name");
+				subject = new Subject(subjectId, subjectName, teacherId, classId,schoolId);
+				arr.add(subject);
+			}
+			return arr;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 }
