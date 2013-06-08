@@ -40,9 +40,10 @@ public class UserManager {
 		try {
 
 			ResultSet set = statement
-					.executeQuery("Select * from users where user_name=\'" + userName +"\' and user_pass=\'"+password+"\'");
+					.executeQuery("Select * from users where user_name=\'" + userName +"\' and user_pass=\'"+password+"\';");
 			set.next();
 			int id = set.getInt("user_id");
+			System.out.println(id+"aaaaaaaa");
 			return id;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -66,9 +67,10 @@ public class UserManager {
 	
 	public static User getUser(int userId) {
 		try {
+			System.out.println(userId+"bbbbbbb");
+			statement.executeQuery("use projectdata");
+			ResultSet set = statement.executeQuery("select * from users where user_id =" +userId);
 
-			ResultSet set = statement
-					.executeQuery("Select * from users where user_id=" + userId);
 			set.next();
 			String status = set.getString("user_type");
 			if(status.equals("0")) {
@@ -87,9 +89,9 @@ public class UserManager {
 				return teacher;
 			}
 			if(status.equals("2")) {
-				ResultSet set1 = statement.executeQuery("Select * from studentes where student_id=" + userId);
-				String name = set1.getString("student_name");
+				ResultSet set1 = statement.executeQuery("Select * from students where student_id=" + userId);
 				set1.next();
+				String name = set1.getString("student_name");
 				int schoolId = set1.getInt("school_id");
 				int classId = set1.getInt("class_id");
 				Student student = new Student(userId, name, schoolId, classId, 2);

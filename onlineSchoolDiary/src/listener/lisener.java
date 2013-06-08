@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebListener;
 
 import classes.DayCommentManager;
 import classes.MarkManager;
+import classes.StudentManager;
 import classes.UserManager;
 import classes.DBManager;
 import classes.GroupManager;
@@ -25,8 +26,8 @@ public class lisener implements ServletContextListener {
 	
 	private static final String SERVER = "localhost";
 	private static final String USER_NAME = "root";
-	private static final String PASSWORD = "2005";
-	private static final String DATABASE = "projectData";
+	private static final String PASSWORD = "zorba017";
+	private static final String DATABASE = "projectdata";
     /**
      * Default constructor. 
      */
@@ -56,6 +57,10 @@ public class lisener implements ServletContextListener {
 		arg0.getServletContext().setAttribute("schoolmanager",
 				new schoolManager((Statement) manager.getStatement()));
 		arg0.getServletContext().setAttribute("id_count", new Integer(1));
+		
+		arg0.getServletContext().setAttribute("studentmanager",
+				new StudentManager((Statement) manager.getStatement()));
+		
     }
 
 	/**
