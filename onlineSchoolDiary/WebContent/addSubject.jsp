@@ -7,11 +7,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Add Subject</title>
+<link rel="stylesheet" type="text/css" href="form.css" />
 </head>
 <body>
 	<form action="/onlineSchoolDiary/addSubject" method="post">
-		Subject name:<input type="text" name="subject">
-		Teacher:<select name="teacherID">
+		საგნის სახელი:<input class="input" type="text" name="subject">
+		მასწავლებელი:
+		<br>
+		<select class="select" name="teacherID">
 			<%
 				HttpSession ses = request.getSession();
 				User user = (User) ses.getAttribute("user");
@@ -24,7 +27,10 @@
 				}
 			%>
 		</select>
-		Class:<select name="groupID">
+		<br>
+		კლასი:
+		<br>
+		<select class="select" name="groupID">
 			<%
 				ArrayList<Group> arr1 = sm.getClasses(schoolId);
 				for (int i = 0; i < arr1.size(); i++) {
@@ -32,9 +38,8 @@
 				}
 			%>
 		</select>
-		<input type="submit" value="Submit">
+		<input type="submit" class="input" value="Submit">
 	</form>
 	<br>
-	<a href="/onlineSchoolDiary/adminPage.jsp">Back to Admin Page</a>
 </body>
 </html>

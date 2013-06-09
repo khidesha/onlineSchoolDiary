@@ -26,13 +26,6 @@
 		StudentManager sm = (StudentManager) getServletContext()
 				.getAttribute("studentmanager");
 		ArrayList<Subject> arr = sm.getSubjectes(classId);
-		//		for (int i = 0; i < arr.size(); i++) {
-		//			System.out.println(arr.get(i).subject_name);
-		//			out.println("<b><ul><li><a href=\"groupsForLectures.jsp?subject="
-		//					+ arr.get(i).subject_name
-		//					+ "\">"
-		//					+ arr.get(i).subject_name + "</a></li></ul></b>");
-		//		}
 		String tmp = new SimpleDateFormat("dd/MM/yyyy").format(Calendar
 				.getInstance().getTime());
 		Calendar c = Calendar.getInstance();
@@ -78,16 +71,18 @@
 		%>
 		<tr>
 			<a href="url">
-			<td>
-				<%
-					out.println(arr.get(i).subject_name);
-				%> </a>
+				<td>
+					<%
+						out.println(arr.get(i).subject_name);
+					%>
+			
+			</a>
 			</td>
 			<%
 				for (int j = 0; j < 5; j++) {
-			%>
-			<td></td>
-			<%
+					%>
+						<td>j</td>
+					<%
 				}
 			%>
 		</tr>
