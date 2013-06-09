@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import classes.Subject;
 import classes.SubjectManager;
+import classes.User;
 
 /**
  * Servlet implementation class addSubject
@@ -43,7 +44,9 @@ public class addSubject extends HttpServlet {
 		int groupID = Integer.parseInt(request.getParameter("groupID"));
 		SubjectManager subject = (SubjectManager)getServletContext().getAttribute("subjectmanager");
 		int subjectID = SubjectManager.getSubjectCount() + 1;
-		subject.createSubject(subjectID, subjectName, teacherID, groupID);
+		User tmp = (User)request.getSession().getAttribute("user");
+		int schoolID = tmp.getSchoolId();
+		subject.createSubject(subjectID, subjectName, teacherID, groupID,schoolID);
 		RequestDispatcher dispatch = request.getRequestDispatcher("/addSubject.jsp");
 		dispatch.forward(request, response);
 	}
