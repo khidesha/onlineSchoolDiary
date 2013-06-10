@@ -70,7 +70,6 @@ public class UserManager {
 							+ "\';");
 			set.next();
 			int id = set.getInt("user_id");
-			System.out.println(id + "aaaaaaaa");
 			return id;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -95,8 +94,6 @@ public class UserManager {
 
 	public static User getUser(int userId) {
 		try {
-			System.out.println(userId + "bbbbbbb");
-			statement.executeQuery("use projectdata");
 			ResultSet set = statement
 					.executeQuery("select * from users where user_id ="
 							+ userId);

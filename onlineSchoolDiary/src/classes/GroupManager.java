@@ -124,7 +124,6 @@ public class GroupManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("group_size =" + groups.size());
 		return groups;
 	}
 

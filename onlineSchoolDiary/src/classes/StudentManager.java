@@ -11,7 +11,22 @@ public class StudentManager {
 	public StudentManager(Statement statement) {
 		this.statement = statement;
 	}
-
+	
+	public static Student getStudent(int student_id){
+		try {
+			ResultSet rs = statement.executeQuery("Select * from students where student_id = " + student_id);
+			rs.next();
+			int studentID = rs.getInt("student_id");
+			String studentName = rs.getString("student_name");
+			int classID = rs.getInt("class_id");
+			int schoolID = rs.getInt("class_id");
+			return (new Student(studentID, studentName, schoolID, classID, 2));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public static ArrayList<Subject> getSubjectes(int classId) {
 		try {

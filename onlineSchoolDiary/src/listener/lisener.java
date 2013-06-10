@@ -26,8 +26,8 @@ public class lisener implements ServletContextListener {
 	
 	private static final String SERVER = "localhost";
 	private static final String USER_NAME = "root";
-	private static final String PASSWORD = "zorba017";
-	private static final String DATABASE = "projectdata";
+	private static final String PASSWORD = "2005";
+	private static final String DATABASE = "projectData";
     /**
      * Default constructor. 
      */

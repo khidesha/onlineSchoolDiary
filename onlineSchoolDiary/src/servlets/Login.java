@@ -46,7 +46,6 @@ public class Login extends HttpServlet {
 		User user = userMan.getUser(userMan.getUserIdWithLoginInfo(username, password));
 		HttpSession session = request.getSession();
 		session.setAttribute("user", user);
-		System.out.println(user.status+"");
 		if(user.status == 0){
 			RequestDispatcher dispatch = request
 					.getRequestDispatcher("adminPage.jsp");

@@ -29,6 +29,7 @@
 			<li>
 				<%=subj.getSubjectName()%> &nbsp;&nbsp;
 				<form action="showGroup.jsp?groupID=<%=subj.getClassId()%>" method="post">
+					<input type="hidden" name="subjectID" value="<%=subj.getSubjectId() %>">
 					Class:<select name="classList">
 					<%
 						for(Group gr: GroupManager.getGroupBySubject(subj.getSubjectName())){
