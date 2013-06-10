@@ -9,6 +9,9 @@
 <%@page import="classes.DBManager"%>
 <%@page import="classes.User"%>
 <%@page import="classes.SubjectManager"%>
+<%@page import =" java.sql.Statement" %>
+<%@page import =" java.sql.ResultSet" %>
+<%@page import = "classes.Mark" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -26,16 +29,14 @@
 		StudentManager sm = (StudentManager) getServletContext()
 				.getAttribute("studentmanager");
 		ArrayList<Subject> arr = sm.getSubjectes(classId);
-		//		for (int i = 0; i < arr.size(); i++) {
-		//			System.out.println(arr.get(i).subject_name);
-		//			out.println("<b><ul><li><a href=\"groupsForLectures.jsp?subject="
-		//					+ arr.get(i).subject_name
-		//					+ "\">"
-		//					+ arr.get(i).subject_name + "</a></li></ul></b>");
-		//		}
 		String tmp = new SimpleDateFormat("dd/MM/yyyy").format(Calendar
 				.getInstance().getTime());
 		Calendar c = Calendar.getInstance();
+		
+		int studentId = student.getUserId();
+		ArrayList<Mark> markArr = sm.getMarks(studentId);
+		//markArr =  
+		
 	%>
 	<table border="8">
 
@@ -45,31 +46,34 @@
 			<td>
 				<%
 					c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-					out.println(new SimpleDateFormat("dd/MM/yyyy").format(c.getTime()));
+					
+					out.println(new SimpleDateFormat("yyyy-MM-dd").format(c.getTime()));
+					//Date d1 = new SimpleDateFormat("yyyy-MM-dd").format(c.getTime());
 				%>
 			</td>
 			<td>
 				<%
 					c.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
-					out.println(new SimpleDateFormat("dd/MM/yyyy").format(c.getTime()));
+					out.println(new SimpleDateFormat("yyyy-MM-dd").format(c.getTime()));
 				%>
 			</td>
 			<td>
 				<%
 					c.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
-					out.println(new SimpleDateFormat("dd/MM/yyyy").format(c.getTime()));
+					out.println(new SimpleDateFormat("yyyy-MM-dd").format(c.getTime()));
 				%>
 			</td>
 			<td>
 				<%
 					c.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
-					out.println(new SimpleDateFormat("dd/MM/yyyy").format(c.getTime()));
+					out.println(new SimpleDateFormat("yyyy-MM-dd").format(c.getTime()));
 				%>
 			</td>
 			<td>
 				<%
 					c.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
-					out.println(new SimpleDateFormat("dd/MM/yyyy").format(c.getTime()));
+					out.println(new SimpleDateFormat("yyyy-MM-dd").format(c.getTime()));
+				//	Date d = c.getTime();
 				%>
 			</td>
 		</tr>
@@ -78,21 +82,49 @@
 		%>
 		<tr>
 			<a href="url">
-			<td>
-				<%
-					out.println(arr.get(i).subject_name);
-				%> </a>
+				<td>
+					<%
+						out.println(arr.get(i).subject_name);
+					%>
+			
+			</a>
 			</td>
 			<%
+			Date date = null;
+			int markName = -1;
+			int dayOfWeek = -1;
+			for(int k = 0; k<markArr.size();k++){
+				Mark mark = markArr.get(k);
+				int subjectId = arr.get(i).subject_id;
+				if(mark.getSubjectId() == subjectId){
+					markName = mark.mark;
+					date = mark.mark_date;
+				//	if(!(date.before(d) && date.after(d1))) date = null;
+					break;
+				}
+			
+			}
+			
+			if(date!=null) {
+				c.setTime(date);
+				dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+			}
+			    int n = dayOfWeek - 2;
+			    
 				for (int j = 0; j < 5; j++) {
-			%>
-			<td></td>
-			<%
+					%>
+						<%if(j == n) { %> <td><% out.print(markName);%></td>
+						<%} else {%> <td> </td>
+					<%
+						}
 				}
 			%>
 		</tr>
 		<%
 			}
+							
+				
+		
 		%>
 
 	</table>

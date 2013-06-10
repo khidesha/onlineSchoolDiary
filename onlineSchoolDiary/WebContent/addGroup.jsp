@@ -5,13 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Add Group</title>
+<link rel="stylesheet" type="text/css" href="form.css" />
 </head>
 <body>
 	<form action="/onlineSchoolDiary/addGroup" method="post">
-		Group name:<input type="text" name="groupname">
-		<input type="submit" value="Submit">
+		კლასის სახელი:<input class="input" type="text" name="groupname">
+		<input class="input" type="submit" value="Submit">
 	</form>
 	<br>
-	<a href="/onlineSchoolDiary/adminPage.jsp">Back to Admin Page</a>
 </body>
 </html>

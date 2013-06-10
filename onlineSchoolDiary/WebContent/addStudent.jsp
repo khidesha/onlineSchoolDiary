@@ -7,13 +7,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Add Student</title>
+<link rel="stylesheet" type="text/css" href="form.css" />
 </head>
-<body>
+<body> 
 	<form action="/onlineSchoolDiary/addStudent" method="post">
-		Username:<input type="text" name="username">
-		Password:<input type="password" name="password">
-		Fullname:<input type="text" name="fullname"> 
-		Class:<select name="group">
+		მომხმარებლის სახელი:<input class="input" type="text" name="username">
+		პაროლი:<input class="input" type="password" name="password">
+		სახელი და გვარი:<input class="input" type="text" name="fullname">
+		
+		კლასი:
+		<br>
+		<select name="group" class="select">
 			<%
 				HttpSession ses = request.getSession();
 				User user = (User) ses.getAttribute("user");
@@ -25,9 +29,10 @@
 					out.println("<option value=" +arr.get(i).getClassId() +">" +arr.get(i).getClassId() +" "+ arr.get(i).getClassName()+"</option>");
 				}
 			%>
-		</select> <input type="submit" value="Submit">
+		</select> 
+		
+		<input class="input" type="submit" value="Submit">
 	</form>
 	<br>
-	<a href="/onlineSchoolDiary/adminPage.jsp">Back to Admin Page</a>
 </body>
 </html>

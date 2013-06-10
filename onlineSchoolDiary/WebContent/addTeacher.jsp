@@ -5,15 +5,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Add Teacher</title>
+<link rel="stylesheet" type="text/css" href="form.css" />
 </head>
 <body>
 	<form action="/onlineSchoolDiary/addTeacher" method="post">
-		Username:<input type="text" name="username">
-		Password:<input type="password" name="password">
-		Fullname:<input type="text" name="fullname">
-		<input type="submit" value="Submit">
+		მომხმარებლის სახელი:<input class="input" type="text" name="username">
+		პაროლი:<input class="input" type="password" name="password">
+		სახელი და გვარი:<input class="input" type="text" name="fullname">
+		<input class="input" type="submit" value="Submit">
 	</form>
 	<br>
-	<a href="/onlineSchoolDiary/adminPage.jsp">Back to Admin Page</a>
 </body>
 </html>
