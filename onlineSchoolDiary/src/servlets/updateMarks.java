@@ -76,8 +76,13 @@ public class updateMarks extends HttpServlet {
  		}
 		for(int i: grManager.getStundetsOfGroup(groupID)){
 			markID = MarkManager.getMarkID();
-			mark = Integer.parseInt(request.getParameter(Integer.toString(i)));
-			markManager.createMark(markID, subjectID, i, date, mark, "");
+			try {
+				mark = Integer.parseInt(request.getParameter(Integer.toString(i)).trim());
+				markManager.createMark(markID, subjectID, i, date, mark, "");				
+			} catch (NumberFormatException e) {
+				
+			}
+			
 		}
 		RequestDispatcher dispatch = request.getRequestDispatcher("/showGroup.jsp?groupID="+Integer.toString(groupID)+"&subjectID="+subjectID);
 		dispatch.forward(request, response);

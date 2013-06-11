@@ -10,7 +10,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%	
-	System.out.println(""+(request.getParameter("groupID"))+(request.getParameter("subjectID")));
 	Group gr = GroupManager.getGroup(Integer.parseInt(request.getParameter("groupID")));
 %>
 <title>Group <%=gr.getClassName()%></title>
@@ -65,7 +64,7 @@
 				&nbsp;
 				<%
 					c.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
-					out.println(new SimpleDateFormat("yyyy-MM-dd").format(c.getTime()));
+					out.println(new SimpleDateFormat("dd/MM/yyyy").format(c.getTime()));
 				%>
 				&nbsp;
 			</th>
@@ -73,7 +72,7 @@
 				&nbsp;
 				<%
 					c.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
-					out.println(new SimpleDateFormat("yyyy-MM-dd").format(c.getTime()));
+					out.println(new SimpleDateFormat("dd/MM/yyyy").format(c.getTime()));
 				%>
 				&nbsp;
 			</th>
@@ -81,7 +80,7 @@
 				&nbsp;
 				<%
 					c.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
-					out.println(new SimpleDateFormat("yyyy-MM-dd").format(c.getTime()));
+					out.println(new SimpleDateFormat("dd/MM/yyyy").format(c.getTime()));
 				%>
 				&nbsp;
 			</th>

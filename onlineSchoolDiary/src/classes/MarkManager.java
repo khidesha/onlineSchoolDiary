@@ -50,8 +50,13 @@ public class MarkManager {
 		return null;
 	}
 		
-	public static void setMark(int markID){
-		
+	public static void setMark(int markID, int newMark){
+		try {
+			int rs = statement.executeUpdate("Update mark set mark ="+ newMark +" where mark_id =" + markID);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void deleteMark(int markId) {
