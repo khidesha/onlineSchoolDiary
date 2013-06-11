@@ -1,7 +1,9 @@
 package servlets;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import classes.GroupManager;
+import classes.Mark;
 import classes.MarkManager;
 
 /**
@@ -33,7 +36,7 @@ public class updateMarks extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 	}
 
 	/**
@@ -41,12 +44,43 @@ public class updateMarks extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int groupID = (Integer)request.getSession().getAttribute("groupID");
+		int subjectID = (Integer)request.getSession().getAttribute("subjectID");
 		GroupManager grManager = (GroupManager)request.getServletContext().getAttribute("groupmanager");
 		MarkManager markManager = (MarkManager)request.getServletContext().getAttribute("markmanager");
 		int mark;
+		int markID;
+		String dayOfWeek = request.getParameter("date");
+		String date = "";
+		Calendar c = Calendar.getInstance();
+		switch(dayOfWeek){
+			case "monday": 
+				c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+				date = new SimpleDateFormat("yyyy-MM-dd").format(c.getTime());
+				break;
+			case "tuesday":
+				c.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
+				date = new SimpleDateFormat("yyyy-MM-dd").format(c.getTime());
+				break;
+			case "wednesday":
+				c.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
+				date = new SimpleDateFormat("yyyy-MM-dd").format(c.getTime());
+				break;
+			case "thursday":
+				c.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
+				date = new SimpleDateFormat("yyyy-MM-dd").format(c.getTime());
+				break;
+			case "friday":
+				c.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
+				date = new SimpleDateFormat("yyyy-MM-dd").format(c.getTime());
+				break;
+ 		}
 		for(int i: grManager.getStundetsOfGroup(groupID)){
+			markID = MarkManager.getMarkID();
 			mark = Integer.parseInt(request.getParameter(Integer.toString(i)));
+			markManager.createMark(markID, subjectID, i, date, mark, "");
 		}
+		RequestDispatcher dispatch = request.getRequestDispatcher("/showGroup.jsp?groupID="+Integer.toString(groupID));
+		dispatch.forward(request, response);
 	}
 
 }

@@ -14,10 +14,10 @@ public class MarkManager {
 		this.statement = statement;
 	}
 
-		public boolean createMark(int markId, int subjectId, int studentId, Date markDay, int mark, String comment) {
+		public boolean createMark(int markId, int subjectId, int studentId, String markDay, int mark, String comment) {
 		try {
 			statement.executeUpdate("Insert into mark values("
-					+ markId + "," +  subjectId + "," + studentId + "," + markDay + "," + mark + ",/'" + comment +  "/');");
+					+ markId + "," +  subjectId + "," + studentId + ", \'" + markDay + "\'," + mark + ",\'" + comment +  "\');");
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -51,5 +51,17 @@ public class MarkManager {
 		}
 		return null;
 	}
-
+	
+	public static int getMarkID(){
+		int mark = 0;
+		try {
+			ResultSet rs = statement.executeQuery("Select count(*) from mark");
+			rs.next();
+			mark = rs.getInt("count(*)")+1;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return mark;
+	}
 }
