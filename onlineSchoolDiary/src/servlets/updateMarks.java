@@ -79,7 +79,7 @@ public class updateMarks extends HttpServlet {
 			mark = Integer.parseInt(request.getParameter(Integer.toString(i)));
 			markManager.createMark(markID, subjectID, i, date, mark, "");
 		}
-		RequestDispatcher dispatch = request.getRequestDispatcher("/showGroup.jsp?groupID="+Integer.toString(groupID));
+		RequestDispatcher dispatch = request.getRequestDispatcher("/showGroup.jsp?groupID="+Integer.toString(groupID)+"&subjectID="+subjectID);
 		dispatch.forward(request, response);
 	}
 

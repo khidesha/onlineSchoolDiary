@@ -23,7 +23,6 @@
 		int teacherId = user.getUserId();
 		teacherManager tm = (teacherManager)getServletContext().getAttribute("teachermanager");
 		ArrayList<Subject> arr = tm.getSubjectes(teacherId);
-		
 		for(Subject subj: arr){			
 	%>	
 			<li>

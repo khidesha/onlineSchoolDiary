@@ -18,7 +18,7 @@
 <body>
 	<% 
 		session.setAttribute("groupID", new Integer(gr.getClassId()));
-		if(session.getAttribute("subjectID").equals(null))session.setAttribute("subjectID", new Integer(request.getParameter("subjectID")));
+		session.setAttribute("subjectID", new Integer(request.getParameter("subjectID")));
 		String tmp = new SimpleDateFormat("dd/MM/yyyy").format(Calendar
 					.getInstance().getTime());
 		Calendar c = Calendar.getInstance();

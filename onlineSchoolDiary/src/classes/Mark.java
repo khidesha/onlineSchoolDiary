@@ -1,6 +1,6 @@
 package classes;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Mark {
 	public int mark_id;
