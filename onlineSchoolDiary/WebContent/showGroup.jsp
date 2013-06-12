@@ -18,6 +18,81 @@
 %>
 <title>Group <%=gr.getClassName()%></title>
 </head>
+<style>
+body {
+	background-image: url(images/bg.png);
+}
+
+select {
+	-webkit-appearance: button;
+	-webkit-border-radius: 2px;
+	-webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+	-webkit-padding-end: 20px;
+	-webkit-padding-start: 2px;
+	-webkit-user-select: none;
+	background-image: url(../images/select-arrow.png),
+		-webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+	background-position: center right;
+	background-repeat: no-repeat;
+	border: 1px solid #AAA;
+	color: #555;
+	font-size: inherit;
+	margin: 0;
+	overflow: hidden;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+#table-2 {
+	border: 1px solid #e3e3e3;
+	background-color: #f2f2f2;
+	width: 100%;
+	border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+}
+
+#table-2 td,#table-2 th {
+	padding: 5px;
+	color: #333;
+}
+
+#table-2 thead {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	padding: .2em 0 .2em .5em;
+	text-align: center;
+	color: #4B4B4B;
+	background-color: #C8C8C8;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2),
+		to(#e3e3e3), color-stop(.6, #B3B3B3) );
+	background-image: -moz-linear-gradient(top, #D6D6D6, #B0B0B0, #B3B3B3 90%);
+	border-bottom: solid 1px #999;
+}
+
+#table-2 th {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 9px;
+	line-height: 20px;
+	font-style: normal;
+	font-weight: normal;
+	text-align: center;
+	text-shadow: white 1px 1px 1px;
+}
+
+#table-2 td {
+	line-height: 20px;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	border-bottom: 1px solid #fff;
+	border-top: 1px solid #fff;
+}
+
+#table-2 td:hover {
+	background-color: #fff;
+}
+</style>
 <body>
 	<%
 		session.setAttribute("groupID", new Integer(gr.getClassId()));
@@ -51,37 +126,47 @@
 
 
 
-	<table border="8">
+	<table border="8" id="table-2">
 
 		<tr>
-			<th>&nbsp;Student List&nbsp;</th>
+			<th>&nbsp;სდუდენტი&nbsp;</th>
 			<th>&nbsp; <%
  	c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
- 	out.println(new SimpleDateFormat("dd/MM/yyyy").format(c.getTime()));
+ 	out.println("ორშაბათი "
+ 			+ new SimpleDateFormat("dd/MM/yyyy").format(c.getTime()));
  	String monday = new SimpleDateFormat("yyyy-MM-dd").format(c
  			.getTime());
+ 	out.println(" ნიშანი        /     კომენტარი");
  %> &nbsp;
 			</th>
 			<th>&nbsp; <%
  	c.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
- 	out.println(new SimpleDateFormat("dd/MM/yyyy").format(c.getTime()));
+ 	out.println("სამშაბათი "
+ 			+ new SimpleDateFormat("dd/MM/yyyy").format(c.getTime()));
+ 	out.println(" ნიშანი        /     კომენტარი");
  %> &nbsp;
 			</th>
 			<th>&nbsp; <%
  	c.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
- 	out.println(new SimpleDateFormat("dd/MM/yyyy").format(c.getTime()));
+ 	out.println("ოთხშაბათი "
+ 			+ new SimpleDateFormat("dd/MM/yyyy").format(c.getTime()));
+ 	out.println(" ნიშანი        /     კომენტარი");
  %> &nbsp;
 			</th>
 			<th>&nbsp; <%
  	c.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
- 	out.println(new SimpleDateFormat("dd/MM/yyyy").format(c.getTime()));
+ 	out.println("ხუთშაბათი "
+ 			+ new SimpleDateFormat("dd/MM/yyyy").format(c.getTime()));
+ 	out.println(" ნიშანი        /     კომენტარი");
  %> &nbsp;
 			</th>
 			<th>&nbsp; <%
  	c.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
- 	out.println(new SimpleDateFormat("dd/MM/yyyy").format(c.getTime()));
+ 	out.println("პარასკევი "
+ 			+ new SimpleDateFormat("dd/MM/yyyy").format(c.getTime()));
  	String friday = new SimpleDateFormat("yyyy-MM-dd").format(c
  			.getTime());
+ 	out.println(" ნიშანი        /     კომენტარი");
  %> &nbsp;
 
 			</th>
@@ -98,7 +183,7 @@
 				Date date = null;
 					int markName = -1;
 					int dayOfWeek = -1;
-					String note = "";
+					String note = ":";
 					ArrayList<Mark> subjectMark = new ArrayList<Mark>();
 					for (int k = 0; k < markArr.size(); k++) {
 						Mark mark = markArr.get(k);
@@ -133,7 +218,10 @@
 					<option>8</option>
 					<option>9</option>
 					<option>10</option>
-			</select></td>
+			</select> <form style="float: right;" action="" /onlineSchoolDiary/updateMarks" method="POST">
+					<textarea style="float: right;" form="<%=daysWeek[j]%>"
+						name="<%=i%>C" cols="2" rows="1"><%=note%></textarea>
+				</form></td>
 			<%
 				}
 					} else {
@@ -141,7 +229,9 @@
 						for (int j = 0; j <= daysWeek.length; j++) {
 							if (j > 0 && count == 0) {
 			%>
-			<td><select form="<%=daysWeek[j-1]%>" type="text" name="<%=i%>"">
+
+			<td><select form="<%=daysWeek[j - 1]%>" type="text"
+				name="<%=i%>"">
 					<option></option>
 					<option>1</option>
 					<option>2</option>
@@ -153,7 +243,12 @@
 					<option>8</option>
 					<option>9</option>
 					<option>10</option>
-			</select></td>
+			</select>
+				<form style="float: right;" action="" /onlineSchoolDiary/updateMarks" method="POST">
+					<textarea style="float: right;" form="<%=daysWeek[j - 1]%>"
+						name="<%=i%>C" cols="2" rows="1"><%=note%>
+		</textarea>
+				</form></td>
 			<%
 				}
 							if (j != daysWeek.length) {
@@ -172,7 +267,12 @@
 										int n = dayOfWeek - 2;
 			%>
 			<td><select form="<%=daysWeek[j]%>" type="text" name="<%=i%>"">
+					<%if(markName>0){ %>
+					<option><%=markName%></option>
+					<%}else{ %>
 					<option></option>
+					<%} %>
+					<option>X</option>
 					<option>1</option>
 					<option>2</option>
 					<option>3</option>
@@ -184,10 +284,13 @@
 					<option>9</option>
 					<option>10</option>
 			</select> <%
- 	if (j == n){
- 								out.print(markName + " (" + note + ") ");
+ 	if (j == n) {
+ %> <form style="float: right;" action="" /onlineSchoolDiary/updateMarks" method="POST">
+					<textarea style="float: right;" form="<%=daysWeek[j]%>"
+						name="<%=i%>C" cols="2" rows="1"><%=note%></textarea>
+				</form> <%
  	break;
- 	}
+ 							}
  %></td>
 			<%
 				}

@@ -86,6 +86,19 @@ public class MarkManager {
 		return null;
 	}
 
+	public boolean createOnlyComment(int markId, int subjectId, int studentId,
+			String markDay,String comment) {
+		try {
+			statement.executeUpdate("Insert into mark values(" + markId + ","
+					+ subjectId + "," + studentId + ", \'" + markDay + "\',"
+					+ null + ",\'" + comment + "\');");
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	public void deleteMark(int markId) {
 		try {
 			statement.executeUpdate("delete from mark where mark_id=" + markId
