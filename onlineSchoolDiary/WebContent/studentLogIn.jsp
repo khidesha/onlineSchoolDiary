@@ -82,13 +82,8 @@
 			for (int i = 0; i < arr.size(); i++) {
 		%>
 		<tr>
-			<a href="url">
-				<td>
-					<%
-						out.println(arr.get(i).subject_name);
-					%>
-			
-			</a>
+			<td>
+			 <a href="yearMarks.jsp?subjectID=<%=arr.get(i).getSubjectId() %>" ><%=arr.get(i).getSubjectName()%></a>
 			</td>
 			<%
 				Date date = null;
