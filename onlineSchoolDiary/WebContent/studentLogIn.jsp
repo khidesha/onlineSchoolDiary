@@ -1,3 +1,4 @@
+<%@page import="classes.DayComment"%>
 <%@page import="classes.StudentManager"%>
 <%@page import="java.util.*"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -94,10 +95,11 @@
 					int markName = -1;
 					int dayOfWeek = -1;
 					String note = "";
+					int subjectId = -1;
 					ArrayList<Mark> subjectMark = new ArrayList();
 					for (int k = 0; k < markArr.size(); k++) {
 						Mark mark = markArr.get(k);
-						int subjectId = arr.get(i).subject_id;
+						subjectId = arr.get(i).subject_id;
 						if (mark.getSubjectId() == subjectId) {
 							date = mark.mark_date;
 							String markDate = new SimpleDateFormat("yyyy-MM-dd")
@@ -155,6 +157,64 @@
 						}
 					}
 			%>
+		</tr>
+		<tr>
+			<td>
+				<%
+					out.println("Homework");
+				%>
+
+			</td>
+			<%
+				ArrayList<DayComment> noteArr = sm.getNotes(subjectId);
+					String homeWork = "";
+					if (noteArr.size() == 0) {
+						for (int j = 0; j < 5; j++) {
+			%>
+			<td></td>
+			<%
+				}}
+					for (int j = 0; j < 5; j++) {
+						for (int l = 0; l < noteArr.size(); l++) {
+							homeWork = noteArr.get(l).comment;
+							String noteD = noteArr.get(l).date;
+							SimpleDateFormat dateFormat = new SimpleDateFormat(
+									"yyyy-MM-dd");
+							Date noteDate = dateFormat.parse(noteD);
+							c.setTime(noteDate);
+							int noteN = c.get(Calendar.DAY_OF_WEEK);
+							noteN = noteN - 2;
+							if (((noteD.compareTo(monday) >= 0) && (noteD
+									.compareTo(friday) <= 0))) {
+								if (j == noteN) {
+			%>
+			<td>
+				<%
+					out.println(homeWork);
+				%>
+			</td>
+
+			<%
+				break;
+								} else {
+
+									if (l == noteArr.size() - 1) {
+			%>
+			<td></td>
+			<%
+				}
+								}
+							}  else {
+
+	%>
+			<td></td>
+			<%
+
+						}
+					}
+					}
+			%>
+
 		</tr>
 		<%
 			}

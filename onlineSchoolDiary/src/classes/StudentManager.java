@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class StudentManager {
@@ -83,6 +84,34 @@ public class StudentManager {
 		}
 		return null;
 	}
+	
+	public static ArrayList<DayComment> getNotes(int subjectId) {
+		try {
+			ArrayList<DayComment> noteArr = new ArrayList<DayComment>();
+			Date date; 
+			String homework;
+			DayComment note;
+			ResultSet set = statement.executeQuery("Select * from notes where subject_id =" + subjectId);
+			
+			while (set.next()) {
+				subjectId = set.getInt("subject_id");
+				date = set.getDate("note_date");
+				String dt = new SimpleDateFormat("yyyy-MM-dd")
+				.format(date);
+				homework = set.getString("note");
+				note = new DayComment(dt, homework, subjectId);	
+				noteArr.add(note);
+			}
+			return noteArr;
+			
+		} catch (SQLException e) {
+			System.out.println("aaaaaaaaaaaa");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 
 	
 }
