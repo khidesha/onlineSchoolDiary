@@ -47,9 +47,13 @@ public class addStudent extends HttpServlet {
 		int schoolID = tmp.getSchoolId();
 		UserManager addUser = (UserManager)getServletContext().getAttribute("usermanager");
 		int countID = UserManager.getUserCount()+1;
-		addUser.createUser(countID, username, schoolID, password, "2", fullname, group);		
-		RequestDispatcher dispatch = request.getRequestDispatcher("/addStudent.jsp");
-		dispatch.forward(request, response);
+		if(UserManager.userNameAlreadyExists(username)){
+		}
+		else{
+			addUser.createUser(countID, username, schoolID, password, "2", fullname, group);		
+			RequestDispatcher dispatch = request.getRequestDispatcher("/addStudent.jsp");
+			dispatch.forward(request, response);
+		}
 
 	}
 

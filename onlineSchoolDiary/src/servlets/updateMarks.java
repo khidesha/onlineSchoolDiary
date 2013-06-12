@@ -74,11 +74,17 @@ public class updateMarks extends HttpServlet {
 				date = new SimpleDateFormat("yyyy-MM-dd").format(c.getTime());
 				break;
  		}
-		for(int i: grManager.getStundetsOfGroup(groupID)){
-			markID = MarkManager.getMarkID();
+		for(int i: GroupManager.getStundetsOfGroup(groupID)){
 			try {
 				mark = Integer.parseInt(request.getParameter(Integer.toString(i)).trim());
-				markManager.createMark(markID, subjectID, i, date, mark, "");				
+				if(MarkManager.markAlreadyExists(subjectID, i, date)){
+					markID = MarkManager.getMarkByDate(subjectID, i, date).mark_id;
+					markManager.editMark(markID, subjectID, i, date, mark, "");
+				}
+				else{
+					markID = MarkManager.getMarkID();
+					markManager.createMark(markID, subjectID, i, date, mark, "");
+				}			
 			} catch (NumberFormatException e) {
 				
 			}

@@ -152,4 +152,21 @@ public class UserManager {
 		return count;
 	}
 
+	
+	public static boolean userNameAlreadyExists(String username){
+		int count = 0;
+		try {
+			ResultSet set = statement
+					.executeQuery("SELECT count(*) from users where user_name=\'"+username+"\'");
+			set.next();
+			count = set.getInt("count(*)");
+			if(count>0)
+				return true;
+			else
+				return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }
