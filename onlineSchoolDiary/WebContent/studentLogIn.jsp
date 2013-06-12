@@ -119,18 +119,17 @@
 			<%
 				}
 					} else {
-						for (int m = 0; m < subjectMark.size(); m++) {
-							Mark mark1 = subjectMark.get(m);
-							markName = mark1.mark;
-							note = mark1.comment;
-							date = mark1.mark_date;
-							if (date != null) {
-								c.setTime(date);
-								dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
-							}
-							int n = dayOfWeek - 2;
-
-							for (int j = 0; j < 5; j++) {
+						for (int j = 0; j < 5; j++) {
+							for (int m = 0; m < subjectMark.size(); m++) {
+								Mark mark1 = subjectMark.get(m);
+								markName = mark1.mark;
+								note = mark1.comment;
+								date = mark1.mark_date;
+								if (date != null) {
+									c.setTime(date);
+									dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+								}
+								int n = dayOfWeek - 2;
 			%>
 			<%
 				if (j == n) {
@@ -140,18 +139,24 @@
 					out.print(markName + " (" + note + ") ");
 				%>
 			</td>
+
 			<%
-				} else {
+				break;
+								} else {
+
+									if (m == subjectMark.size() - 1) {
 			%>
 			<td></td>
 			<%
 				}
+								}
 							}
+
+						}
+					}
 			%>
 		</tr>
 		<%
-			}
-				}
 			}
 		%>
 
