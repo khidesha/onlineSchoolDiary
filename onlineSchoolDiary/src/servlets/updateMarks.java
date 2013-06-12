@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import classes.DayCommentManager;
 import classes.GroupManager;
 import classes.Mark;
 import classes.MarkManager;
@@ -56,6 +57,7 @@ public class updateMarks extends HttpServlet {
 				.getAttribute("markmanager");
 		int mark;
 		String comment;
+		String dayNote;
 		int markID;
 		String dayOfWeek = request.getParameter("date");
 		String date = "";
@@ -82,6 +84,14 @@ public class updateMarks extends HttpServlet {
 			date = new SimpleDateFormat("yyyy-MM-dd").format(c.getTime());
 			break;
 		}
+		
+		dayNote = request.getParameter("dayNote" + c.getTime().getDay());
+		if(DayCommentManager.dayCommentAlreadyExists(subjectID, date)){
+			DayCommentManager.editDayComment(date, dayNote, subjectID);
+		}
+		else{
+			DayCommentManager.createDayComment(date, dayNote, subjectID);
+		}
 		for (int i : GroupManager.getStundetsOfGroup(groupID)) {
 			try {
 				mark = Integer.parseInt(request.getParameter(
@@ -101,6 +111,7 @@ public class updateMarks extends HttpServlet {
 					comment = request.getParameter(Integer.toString(i) + "C");
 					if (markManager.markAlreadyExists(subjectID, i, date)) {
 						markID = MarkManager.getMarkByDate(subjectID, i, date).mark_id;
+						markManager.deleteMark(markID);
 						markManager.createOnlyComment(markID, subjectID, i, date, comment);
 					}
 					else{

@@ -1,3 +1,5 @@
+<%@page import="classes.DayComment"%>
+<%@page import="classes.DayCommentManager"%>
 <%@page import="classes.StudentManager"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -27,8 +29,8 @@ select {
 	-webkit-appearance: button;
 	-webkit-border-radius: 2px;
 	-webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
-	-webkit-padding-end: 20px;
-	-webkit-padding-start: 2px;
+	-webkit-padding-end: 8px;
+	-webkit-padding-start: 1px;
 	-webkit-user-select: none;
 	background-image: url(../images/select-arrow.png),
 		-webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
@@ -124,7 +126,9 @@ select {
 		<input type="hidden" name="date" value="friday">
 	</form>
 
-
+	<%
+		String d = "";
+	%>
 
 	<table border="8" id="table-2">
 
@@ -137,38 +141,102 @@ select {
  	String monday = new SimpleDateFormat("yyyy-MM-dd").format(c
  			.getTime());
  	out.println(" ნიშანი        /     კომენტარი");
+ 	if (DayCommentManager.dayCommentAlreadyExists(
+ 			Integer.parseInt(request.getParameter("subjectID")),
+ 			new SimpleDateFormat("yyyy-MM-dd").format(c.getTime()))) {
+ 		DayComment dc = DayCommentManager.getDayComment(
+ 				Integer.parseInt(request.getParameter("subjectID")),
+ 				monday);
+ 		d = dc.comment;
+ 	}
  %> &nbsp;
+
+				<form action="/onlineSchoolDiary/updateMarks" method="POST">
+					<textarea form="monday" name="dayNote<%=c.getTime().getDay()%>"
+						cols="4" rows="1"><%=d%></textarea>
+				</form>
 			</th>
 			<th>&nbsp; <%
+ 	d = "";
  	c.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
  	out.println("სამშაბათი "
  			+ new SimpleDateFormat("dd/MM/yyyy").format(c.getTime()));
  	out.println(" ნიშანი        /     კომენტარი");
+ 	if (DayCommentManager.dayCommentAlreadyExists(
+ 			Integer.parseInt(request.getParameter("subjectID")),
+ 			new SimpleDateFormat("yyyy-MM-dd").format(c.getTime()))) {
+ 		DayComment dc = DayCommentManager.getDayComment(
+ 				Integer.parseInt(request.getParameter("subjectID")),
+ 				new SimpleDateFormat("yyyy-MM-dd").format(c.getTime()));
+ 		d = dc.comment;
+ 	}
  %> &nbsp;
+				<form action="/onlineSchoolDiary/updateMarks" method="POST">
+					<textarea form="tuesday" name="dayNote<%=c.getTime().getDay()%>"
+						cols="4" rows="1"><%=d%></textarea>
+				</form>
 			</th>
 			<th>&nbsp; <%
+ 	d = "";
  	c.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
  	out.println("ოთხშაბათი "
  			+ new SimpleDateFormat("dd/MM/yyyy").format(c.getTime()));
  	out.println(" ნიშანი        /     კომენტარი");
+ 	if (DayCommentManager.dayCommentAlreadyExists(
+ 			Integer.parseInt(request.getParameter("subjectID")),
+ 			new SimpleDateFormat("yyyy-MM-dd").format(c.getTime()))) {
+ 		DayComment dc = DayCommentManager.getDayComment(
+ 				Integer.parseInt(request.getParameter("subjectID")),
+ 				new SimpleDateFormat("yyyy-MM-dd").format(c.getTime()));
+ 		d = dc.comment;
+ 	}
  %> &nbsp;
+				<form action="/onlineSchoolDiary/updateMarks" method="POST">
+					<textarea form="wednesday" name="dayNote<%=c.getTime().getDay()%>"
+						cols="4" rows="1"><%=d%></textarea>
+				</form>
 			</th>
 			<th>&nbsp; <%
+ 	d = "";
  	c.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
  	out.println("ხუთშაბათი "
  			+ new SimpleDateFormat("dd/MM/yyyy").format(c.getTime()));
  	out.println(" ნიშანი        /     კომენტარი");
+ 	if (DayCommentManager.dayCommentAlreadyExists(
+ 			Integer.parseInt(request.getParameter("subjectID")),
+ 			new SimpleDateFormat("yyyy-MM-dd").format(c.getTime()))) {
+ 		DayComment dc = DayCommentManager.getDayComment(
+ 				Integer.parseInt(request.getParameter("subjectID")),
+ 				new SimpleDateFormat("yyyy-MM-dd").format(c.getTime()));
+ 		d = dc.comment;
+ 	}
  %> &nbsp;
+				<form action="/onlineSchoolDiary/updateMarks" method="POST">
+					<textarea form="thursday" name="dayNote<%=c.getTime().getDay()%>"
+						cols="4" rows="1"><%=d%></textarea>
+				</form>
 			</th>
 			<th>&nbsp; <%
+ 	d = "";
  	c.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
  	out.println("პარასკევი "
  			+ new SimpleDateFormat("dd/MM/yyyy").format(c.getTime()));
  	String friday = new SimpleDateFormat("yyyy-MM-dd").format(c
  			.getTime());
  	out.println(" ნიშანი        /     კომენტარი");
+ 	if (DayCommentManager.dayCommentAlreadyExists(
+ 			Integer.parseInt(request.getParameter("subjectID")),
+ 			new SimpleDateFormat("yyyy-MM-dd").format(c.getTime()))) {
+ 		DayComment dc = DayCommentManager.getDayComment(
+ 				Integer.parseInt(request.getParameter("subjectID")),
+ 				new SimpleDateFormat("yyyy-MM-dd").format(c.getTime()));
+ 		d = dc.comment;
+ 	}
  %> &nbsp;
-
+				<form action="/onlineSchoolDiary/updateMarks" method="POST">
+					<textarea form="friday" name="dayNote<%=c.getTime().getDay()%>"
+						cols="4" rows="1"><%=d%></textarea>
+				</form>
 			</th>
 		</tr>
 		<%
@@ -206,7 +274,7 @@ select {
 					if (subjectMark.size() == 0) {
 						for (int j = 0; j <= daysWeek.length - 1; j++) {
 			%>
-			<td><select form="<%=daysWeek[j]%>" type="text" name="<%=i%>"">
+			<td><select form="<%=daysWeek[j]%>" type="text" name="<%=i%>">
 					<option></option>
 					<option>1</option>
 					<option>2</option>
@@ -218,9 +286,11 @@ select {
 					<option>8</option>
 					<option>9</option>
 					<option>10</option>
-			</select> <form style="float: right;" action="" /onlineSchoolDiary/updateMarks" method="POST">
+			</select>
+				<form style="float: right;" action=""
+					/onlineSchoolDiary/updateMarks" method="POST">
 					<textarea style="float: right;" form="<%=daysWeek[j]%>"
-						name="<%=i%>C" cols="2" rows="1"><%=note%></textarea>
+						name="<%=i%>C" cols="4" rows="1"><%=note%></textarea>
 				</form></td>
 			<%
 				}
@@ -244,9 +314,10 @@ select {
 					<option>9</option>
 					<option>10</option>
 			</select>
-				<form style="float: right;" action="" /onlineSchoolDiary/updateMarks" method="POST">
+				<form style="float: right;" action="/onlineSchoolDiary/updateMarks"
+					method="POST">
 					<textarea style="float: right;" form="<%=daysWeek[j - 1]%>"
-						name="<%=i%>C" cols="2" rows="1"><%=note%>
+						name="<%=i%>C" cols="4" rows="1"><%=note%>
 		</textarea>
 				</form></td>
 			<%
@@ -267,11 +338,17 @@ select {
 										int n = dayOfWeek - 2;
 			%>
 			<td><select form="<%=daysWeek[j]%>" type="text" name="<%=i%>"">
-					<%if(markName>0){ %>
+					<%
+						if (markName > 0) {
+					%>
 					<option><%=markName%></option>
-					<%}else{ %>
+					<%
+						} else {
+					%>
 					<option></option>
-					<%} %>
+					<%
+						}
+					%>
 					<option>X</option>
 					<option>1</option>
 					<option>2</option>
@@ -285,9 +362,11 @@ select {
 					<option>10</option>
 			</select> <%
  	if (j == n) {
- %> <form style="float: right;" action="" /onlineSchoolDiary/updateMarks" method="POST">
+ %>
+				<form style="float: right;" action="/onlineSchoolDiary/updateMarks"
+					method="POST">
 					<textarea style="float: right;" form="<%=daysWeek[j]%>"
-						name="<%=i%>C" cols="2" rows="1"><%=note%></textarea>
+						name="<%=i%>C" cols="4" rows="1"><%=note%></textarea>
 				</form> <%
  	break;
  							}
