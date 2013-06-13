@@ -112,6 +112,34 @@ public class StudentManager {
 		return null;
 	}
 
-
+	public static ArrayList<Mark> getSubjectMarks(int studentId, int subId) {
+		try {
+			ArrayList<Mark> markArr = new ArrayList<Mark>();
+			int markId;
+			int subjectId;
+			int markName;
+			Date date; 
+			String comm;
+			Mark mark;
+			ResultSet set = statement.executeQuery("Select * from mark where student_id =" + studentId);
+			while (set.next()) {
+				subjectId = set.getInt("subject_id");
+				if(subjectId == subId) {
+					markName = set.getInt("mark");
+					markId = set.getInt("mark_id");
+					date = set.getDate("mark_date");
+					comm = set.getString("mark_comment");
+					mark = new Mark(markId, subjectId, studentId, date, markName, comm);
+					markArr.add(mark);
+				}
+			}
+			return markArr;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 }
