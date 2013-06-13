@@ -298,6 +298,7 @@ select {
 						int count = 0;
 						for (int j = 0; j <= daysWeek.length; j++) {
 							if (j > 0 && count == 0) {
+								note = "";
 			%>
 
 			<td><select form="<%=daysWeek[j - 1]%>" type="text"

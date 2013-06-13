@@ -46,6 +46,7 @@ public class updateMarks extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@SuppressWarnings("deprecation")
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		int groupID = (Integer) request.getSession().getAttribute("groupID");
@@ -84,12 +85,11 @@ public class updateMarks extends HttpServlet {
 			date = new SimpleDateFormat("yyyy-MM-dd").format(c.getTime());
 			break;
 		}
-		
+
 		dayNote = request.getParameter("dayNote" + c.getTime().getDay());
-		if(DayCommentManager.dayCommentAlreadyExists(subjectID, date)){
+		if (DayCommentManager.dayCommentAlreadyExists(subjectID, date)) {
 			DayCommentManager.editDayComment(date, dayNote, subjectID);
-		}
-		else{
+		} else {
 			DayCommentManager.createDayComment(date, dayNote, subjectID);
 		}
 		for (int i : GroupManager.getStundetsOfGroup(groupID)) {
@@ -107,19 +107,22 @@ public class updateMarks extends HttpServlet {
 							comment);
 				}
 			} catch (NumberFormatException e) {
-				if(request.getParameter(Integer.toString(i) + "C")!=null && request.getParameter(Integer.toString(i) + "C").length() > 2){
+				if (request.getParameter(Integer.toString(i) + "C") != null
+						&& request.getParameter(Integer.toString(i) + "C")
+								.length() > 2) {
 					comment = request.getParameter(Integer.toString(i) + "C");
 					if (markManager.markAlreadyExists(subjectID, i, date)) {
 						markID = MarkManager.getMarkByDate(subjectID, i, date).mark_id;
 						markManager.deleteMark(markID);
-						markManager.createOnlyComment(markID, subjectID, i, date, comment);
-					}
-					else{
+						markManager.createOnlyComment(markID, subjectID, i,
+								date, comment);
+					} else {
 						markID = MarkManager.getMarkID();
-						markManager.createOnlyComment(markID, subjectID, i, date,comment);
+						markManager.createOnlyComment(markID, subjectID, i,
+								date, comment);
 					}
-				}
-				else if (MarkManager.getMarkByDate(subjectID, i, date) != null) {
+				} else if (request.getParameter(Integer.toString(i)).trim() != null
+						&& MarkManager.markAlreadyExists(subjectID, i, date)) {
 					markID = MarkManager.getMarkByDate(subjectID, i, date).mark_id;
 					markManager.deleteMark(markID);
 				}
