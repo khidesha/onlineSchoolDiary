@@ -59,17 +59,17 @@ public class Login extends HttpServlet {
 			User user = userMan.getUser(userMan.getUserIdWithLoginInfo(username, passwordHash));
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
-			if(user.status == 0){
+			if(user.getStatus() == 0){
 				RequestDispatcher dispatch = request
 						.getRequestDispatcher("adminPage.jsp");
 				dispatch.forward(request, response);
 			}
-			if(user.status == 1){
+			if(user.getStatus() == 1){
 				RequestDispatcher dispatch = request
 						.getRequestDispatcher("teacherLogIn.jsp");
 				dispatch.forward(request, response);
 			}
-			if(user.status == 2){
+			if(user.getStatus() == 2){
 				RequestDispatcher dispatch = request
 						.getRequestDispatcher("studentLogIn.jsp");
 				dispatch.forward(request, response);
