@@ -1,5 +1,6 @@
 
 
+<%@page import="classes.markComperator"%>
 <%@page import="classes.DayComment"%>
 <%@page import="classes.StudentManager"%>
 <%@page import="java.util.*"%>
@@ -31,15 +32,17 @@
 	int studentId = user.user_id; 
 	StudentManager st = (StudentManager) getServletContext()
 			.getAttribute("studentmanager");
-	ArrayList<Mark> ar = st.getSubjectMarks(studentId, sb.getSubjectId());
+	List<Mark> ar = st.getSubjectMarks(studentId, sb.getSubjectId());
+	Collections.sort(ar,new markComperator());
 	%>
 	<table border="8">
 
 
 		<tr>
 			<td>Subject</td>
-	<% 
-	for(int i = 0; i < ar.size(); i++) { %>
+	<%
+	for(int i = 0; i < ar.size(); i++) { 
+	%>
 		<td> <%out.println(new SimpleDateFormat("yyyy-MM-dd").format(ar.get(i).mark_date));%></td>
 		<% 	
 	}%>

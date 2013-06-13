@@ -1,8 +1,10 @@
 package classes;
 
+import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
 
-public class Mark {
+public class Mark{
 	public int mark_id;
 	public int subject_id;
 	public int student_id;
@@ -46,5 +48,4 @@ public class Mark {
 	public void setMark(int new_mark) {
 		this.mark = new_mark;
 	}
-	
 }
