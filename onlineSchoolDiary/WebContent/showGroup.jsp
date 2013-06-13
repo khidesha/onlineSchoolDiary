@@ -246,7 +246,7 @@ select {
 				ArrayList<Mark> markArr = sm.getMarks(i);
 		%>
 		<tr>
-			<td><%=StudentManager.getStudent(i).getUsername()%></td>
+			<td><a href="oneStudentMarks.jsp?studentID=<%=StudentManager.getStudent(i).getUserId()%>" ><%=StudentManager.getStudent(i).getUsername()%></a></td>
 			<%
 				Date date = null;
 					int markName = -1;
