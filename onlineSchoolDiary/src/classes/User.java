@@ -1,10 +1,10 @@
 package classes;
 
 public class User {
-	public int user_id;
-	public String user_name;
-	public int school_id;
-	public int status;
+	private int user_id;
+	private String user_name;
+	private int school_id;
+	private int status;
 
 	
 	public User(int userId, String userName, int schoolId, int status) {
