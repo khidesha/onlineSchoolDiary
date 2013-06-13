@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import classes.Sha1Hash;
 import classes.User;
 import classes.UserManager;
 
@@ -42,12 +44,18 @@ public class editStudent extends HttpServlet {
 		String password = request.getParameter("password");
 		String fullname = request.getParameter("fullname");
 		int group = Integer.parseInt(request.getParameter("group"));
-		
+		String passwordHash = "";
+		try {
+			passwordHash = Sha1Hash.SHA1(password);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		User tmp = (User)request.getSession().getAttribute("user");
 		int schoolID = tmp.getSchoolId();
 		UserManager addUser = (UserManager)getServletContext().getAttribute("usermanager");
 		int studentId = Integer.parseInt(request.getParameter("student"));
-		addUser.editUser(studentId, username, schoolID, password, "2", fullname, group);		
+		addUser.editUser(studentId, username, schoolID, passwordHash, "2", fullname, group);		
 		RequestDispatcher dispatch = request.getRequestDispatcher("/editStudent.jsp");
 		dispatch.forward(request, response);
 	}

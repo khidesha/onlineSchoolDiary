@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class UserManager {
 
@@ -61,6 +63,18 @@ public class UserManager {
 		}
 	}
 
+	public static String getUserPassword(String username){
+		String res = "";
+		try {
+			ResultSet rs = statement.executeQuery("Select * from users where user_name = '" + username +"'");
+			rs.next();
+			res = rs.getString("user_pass");
+		} catch (SQLException e) {
+			return res;
+		}
+		return res;
+	}
+	
 	public static int getUserIdWithLoginInfo(String userName, String password) {
 		try {
 

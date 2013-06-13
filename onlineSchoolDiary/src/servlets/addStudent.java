@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import classes.Sha1Hash;
 import classes.User;
 import classes.UserManager;
 
@@ -40,6 +42,13 @@ public class addStudent extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		String passwordHash = "";
+		try {
+			passwordHash = Sha1Hash.SHA1(password);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		String fullname = request.getParameter("fullname");
 		int group = Integer.parseInt(request.getParameter("group"));
 		
@@ -50,7 +59,7 @@ public class addStudent extends HttpServlet {
 		if(UserManager.userNameAlreadyExists(username)){
 		}
 		else{
-			addUser.createUser(countID, username, schoolID, password, "2", fullname, group);		
+			addUser.createUser(countID, username, schoolID, passwordHash, "2", fullname, group);		
 			RequestDispatcher dispatch = request.getRequestDispatcher("/addStudent.jsp");
 			dispatch.forward(request, response);
 		}
