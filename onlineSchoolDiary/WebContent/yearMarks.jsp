@@ -104,7 +104,7 @@ select {
 			.getParameter("subjectID")));
 	HttpSession ses = request.getSession();
 	User user = (User) ses.getAttribute("user");
-	int studentId = user.user_id; 
+	int studentId = user.getUserId(); 
 	StudentManager st = (StudentManager) getServletContext()
 			.getAttribute("studentmanager");
 	List<Mark> ar = st.getSubjectMarks(studentId, sb.getSubjectId());
