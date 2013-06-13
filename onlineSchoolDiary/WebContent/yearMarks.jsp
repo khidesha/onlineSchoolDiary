@@ -24,17 +24,34 @@
 
 
 <%
-	Subject sm = SubjectManager.getSubject(Integer.parseInt(request
+	Subject sb = SubjectManager.getSubject(Integer.parseInt(request
 			.getParameter("subjectID")));
 	HttpSession ses = request.getSession();
 	User user = (User) ses.getAttribute("user");
-	int studentID = user.user_id; 
-	//ResultSet rs = statement.executeQuery("Select * from students where student_id = " + student_id + 
-			//"and subject_id = " + subject_id );
+	int studentId = user.user_id; 
+	StudentManager st = (StudentManager) getServletContext()
+			.getAttribute("studentmanager");
+	ArrayList<Mark> ar = st.getSubjectMarks(studentId, sb.getSubjectId());
+	%>
+	<table border="8">
 
+
+		<tr>
+			<td>Subject</td>
+	<% 
+	for(int i = 0; i < ar.size(); i++) { %>
+		<td> <%out.println(new SimpleDateFormat("yyyy-MM-dd").format(ar.get(i).mark_date));%></td>
+		<% 	
+	}%>
+	</tr>
+	<tr>
+	<td><%out.println(sb.getSubjectName()); %></td>
+	<%for(int i = 0; i < ar.size(); i++) { %>
+		<td><%out.print(ar.get(i).getMark());%></td>
+		<% }
 %>
-
-<title><%=sm.subject_name%></title>
+	</tr>
+<title><%=sb.subject_name%></title>
 
 </head>
 <body>

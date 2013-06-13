@@ -36,7 +36,7 @@
 
 		int studentId = student.getUserId();
 		ArrayList<Mark> markArr = sm.getMarks(studentId);
-		//markArr =
+		
 	%>
 	<table border="8">
 
