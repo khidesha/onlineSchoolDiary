@@ -16,17 +16,17 @@
 		<select class="select" name="student">
 			<%
 				HttpSession ses = request.getSession();
-				User user = (User) ses.getAttribute("user");
-				int schoolId = user.getUserId();
-				schoolManager sm = (schoolManager) getServletContext()
-						.getAttribute("schoolmanager");
-				ArrayList<Student> arr = sm.getStudents(schoolId);
-				for (int i = 0; i < arr.size(); i++) {
-					out.println("<option value=" + arr.get(i).getUserId() + ">"
-							+ arr.get(i).getUserId() + " "
-							+ arr.get(i).getUsername() + " Class: "
-							+ arr.get(i).class_id + "</option>");
-				}
+					User user = (User) ses.getAttribute("user");
+					int schoolId = user.getUserId();
+					SchoolManager sm = (SchoolManager) getServletContext()
+							.getAttribute("schoolmanager");
+					ArrayList<Student> arr = sm.getStudents(schoolId);
+					for (int i = 0; i < arr.size(); i++) {
+						out.println("<option value=" + arr.get(i).getUserId() + ">"
+								+ arr.get(i).getUserId() + " "
+								+ arr.get(i).getUsername() + " Class: "
+								+ arr.get(i).class_id + "</option>");
+					}
 			%>
 		</select>
 		<br>
