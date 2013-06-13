@@ -1,3 +1,5 @@
+<%@ page import="java.util.Map"%>
+<%@page import="java.util.Iterator"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -11,11 +13,11 @@ html,body {
 }
 
 body {
-	font-family: font-size :   12px;
+	font-family: font-size :           12px;
 	margin: 0;
 	background-color: #363839;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#7C8084),
-		to(#363839));
+		to(#363839) );
 	background-image: -webkit-linear-gradient(top, #7C8084, #363839);
 	background-image: -moz-linear-gradient(top, #7C8084, #363839);
 	background-image: -ms-linear-gradient(top, #7C8084, #363839);
@@ -26,18 +28,18 @@ body {
 #login {
 	background: radial-gradient(black 15%, transparent 16%) 0 0,
 		radial-gradient(black 15%, transparent 16%) 8px 8px,
-		radial-gradient(rgba(255, 255, 255, .1) 15%, transparent 20%) 0 1px,
-		radial-gradient(rgba(255, 255, 255, .1) 15%, transparent 20%) 8px 9px;
+		radial-gradient(rgba(255, 255, 255, .1) 15%, transparent 20% ) 0 1px,
+		radial-gradient(rgba(255, 255, 255, .1) 15%, transparent 20% ) 8px 9px;
 	background: -moz-radial-gradient(black 15%, transparent 16%) 0 0,
 		-moz-radial-gradient(black 15%, transparent 16%) 8px 8px,
-		-moz-radial-gradient(rgba(255, 255, 255, .1) 15%, transparent 20%) 0
-		1px, -moz-radial-gradient(rgba(255, 255, 255, .1) 15%, transparent 20%)
-		8px 9px;
+		-moz-radial-gradient(rgba(255, 255, 255, .1) 15%, transparent 20% ) 0
+		1px, -moz-radial-gradient(rgba(255, 255, 255, .1) 15%, transparent 20%
+		) 8px 9px;
 	background: -webkit-radial-gradient(black 15%, transparent 16%) 0 0,
 		-webkit-radial-gradient(black 15%, transparent 16%) 8px 8px,
-		-webkit-radial-gradient(rgba(255, 255, 255, .1) 15%, transparent 20%)
+		-webkit-radial-gradient(rgba(255, 255, 255, .1) 15%, transparent 20% )
 		0 1px, -webkit-radial-gradient(rgba(255, 255, 255, .1) 15%,
-		transparent 20%) 8px 9px;
+		transparent 20% ) 8px 9px;
 	background-color: #373737;
 	background-size: 16px 16px;
 	-webkit-background-size: 16px 16px;
@@ -150,28 +152,28 @@ h1 {
 	background-color: #C94700;
 	background-size: 5px 5px, 100% 100%;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#C94700),
-		to(#B84100));
+		to(#B84100) );
 	background-image: -webkit-linear-gradient(45deg, transparent 0%, transparent 25%, rgba(0,
 		0, 0, 0.15) 25%, rgba(0, 0, 0, 0.15) 50%, transparent 50%, transparent
-		75%, rgba(0, 0, 0, 0.15) 75%, rgba(0, 0, 0, 0.15) 100%),
-		rgba(0, 0, 0, .125) 20px),
+		75%, rgba(0, 0, 0, 0.15) 75%, rgba(0, 0, 0, 0.15) 100% ),
+		rgba(0, 0, 0, .125) 20px ),
 		-webkit-linear-gradient(top, #C94700, #B84100);
 	background-image: -moz-linear-gradient(45deg, transparent 0%, transparent 25%, rgba(0, 0,
 		0, 0.15) 25%, rgba(0, 0, 0, 0.15) 50%, transparent 50%, transparent
-		75%, rgba(0, 0, 0, 0.15) 75%, rgba(0, 0, 0, 0.15) 100%),
+		75%, rgba(0, 0, 0, 0.15) 75%, rgba(0, 0, 0, 0.15) 100% ),
 		-moz-linear-gradient(top, #C94700, #B84100);
 	background-image: -ms-linear-gradient(45deg, transparent 0%, transparent 25%, rgba(0, 0, 0
 		, 0.15) 25%, rgba(0, 0, 0, 0.15) 50%, transparent 50%, transparent 75%,
-		rgba(0, 0, 0, 0.15) 75%, rgba(0, 0, 0, 0.15) 100%),
-		rgba(0, 0, 0, .125) 20px), -ms-linear-gradient(top, #C94700, #B84100);
+		rgba(0, 0, 0, 0.15) 75%, rgba(0, 0, 0, 0.15) 100% ),
+		rgba(0, 0, 0, .125) 20px ), -ms-linear-gradient(top, #C94700, #B84100);
 	background-image: -o-linear-gradient(45deg, transparent 0%, transparent 25%, rgba(0, 0, 0,
 		0.15) 25%, rgba(0, 0, 0, 0.15) 50%, transparent 50%, transparent 75%,
-		rgba(0, 0, 0, 0.15) 75%, rgba(0, 0, 0, 0.15) 100%),
-		rgba(0, 0, 0, .125) 20px), -o-linear-gradient(top, #C94700, #B84100);
+		rgba(0, 0, 0, 0.15) 75%, rgba(0, 0, 0, 0.15) 100% ),
+		rgba(0, 0, 0, .125) 20px ), -o-linear-gradient(top, #C94700, #B84100);
 	background-image: linear-gradient(45deg, transparent 0%, transparent 25%, rgba(0, 0, 0,
 		0.15) 25%, rgba(0, 0, 0, 0.15) 50%, transparent 50%, transparent 75%,
-		rgba(0, 0, 0, 0.15) 75%, rgba(0, 0, 0, 0.15) 100%),
-		rgba(0, 0, 0, .125) 20px), linear-gradient(top, #C94700, #B84100);
+		rgba(0, 0, 0, 0.15) 75%, rgba(0, 0, 0, 0.15) 100% ),
+		rgba(0, 0, 0, .125) 20px ), linear-gradient(top, #C94700, #B84100);
 	/* border-bottom: 1px solid rgba(255, 255, 255, 0.3); */
 	border-top-right-radius: 20px 5px;
 	color: #301607;
@@ -217,21 +219,21 @@ fieldset#inputs {
 	width: 400px;
 	background-color: #C8BCB6;
 	background: -webkit-gradient(linear, left top, left bottom, from(#C8BCB6),
-		to(#B3A39A));
+		to(#B3A39A) );
 	background: -webkit-repeating-linear-gradient(45deg, transparent, transparent 10px,
-		rgba(0, 0, 0, .05) 10px, rgba(0, 0, 0, .05) 20px),
+		rgba(0, 0, 0, .05) 10px, rgba(0, 0, 0, .05) 20px ),
 		-webkit-linear-gradient(top, #C8BCB6, #B3A39A);
 	background: -moz-repeating-linear-gradient(45deg, transparent, transparent 10px,
-		rgba(0, 0, 0, 0.05) 10px, rgba(0, 0, 0, 0.05) 20px) repeat scroll 0 0%,
-		-moz-linear-gradient(center top, #C8BCB6, #B3A39A);
+		rgba(0, 0, 0, 0.05) 10px, rgba(0, 0, 0, 0.05) 20px ) repeat scroll 0
+		0%, -moz-linear-gradient(center top, #C8BCB6, #B3A39A);
 	background: -ms-repeating-linear-gradient(45deg, transparent, transparent 10px,
-		rgba(0, 0, 0, .05) 10px, rgba(0, 0, 0, .05) 20px),
+		rgba(0, 0, 0, .05) 10px, rgba(0, 0, 0, .05) 20px ),
 		-ms-linear-gradient(top, #C8BCB6, #B3A39A);
 	background: -o-repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0
-		, 0, 0, .05) 10px, rgba(0, 0, 0, .05) 20px),
+		, 0, 0, .05) 10px, rgba(0, 0, 0, .05) 20px ),
 		-o-linear-gradient(top, #C8BCB6, #B3A39A);
 	background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,
-		0, 0, .05) 10px, rgba(0, 0, 0, .05) 20px),
+		0, 0, .05) 10px, rgba(0, 0, 0, .05) 20px ),
 		linear-gradient(top, #C8BCB6, #B3A39A);
 	-moz-box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.5) inset, 0 2px 2px 2px
 		#1F1F1F inset;
@@ -310,7 +312,7 @@ fieldset#inputs:before { /* couture autour des inputs */
 #submit {
 	background-color: #ffb94b;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#C94700),
-		to(#B84100));
+		to(#B84100) );
 	background-image: -webkit-linear-gradient(top, #C94700, #B84100);
 	background-image: -moz-linear-gradient(top, #C94700, #B84100);
 	background-image: -ms-linear-gradient(top, #C94700, #B84100);
@@ -346,7 +348,7 @@ fieldset#inputs:before { /* couture autour des inputs */
 #submit:hover,#submit:focus {
 	background-color: #C94700;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#B84100),
-		to(#C94700));
+		to(#C94700) );
 	background-image: -webkit-linear-gradient(top, #B84100, #C94700);
 	background-image: -moz-linear-gradient(top, #B84100, #C94700);
 	background-image: -ms-linear-gradient(top, #B84100, #C94700);
@@ -383,21 +385,21 @@ fieldset#inputs:before { /* couture autour des inputs */
 	width: 250px;
 	background-color: #C8BCB6;
 	background: -webkit-gradient(linear, left top, left bottom, from(#C8BCB6),
-		to(#B3A39A));
+		to(#B3A39A) );
 	background: -webkit-repeating-linear-gradient(45deg, transparent, transparent 10px,
-		rgba(0, 0, 0, .05) 10px, rgba(0, 0, 0, .05) 20px),
+		rgba(0, 0, 0, .05) 10px, rgba(0, 0, 0, .05) 20px ),
 		-webkit-linear-gradient(top, #C8BCB6, #B3A39A);
 	background: -moz-repeating-linear-gradient(45deg, transparent, transparent 10px,
-		rgba(0, 0, 0, 0.05) 10px, rgba(0, 0, 0, 0.05) 20px) repeat scroll 0 0%,
-		-moz-linear-gradient(center top, #C8BCB6, #B3A39A);
+		rgba(0, 0, 0, 0.05) 10px, rgba(0, 0, 0, 0.05) 20px ) repeat scroll 0
+		0%, -moz-linear-gradient(center top, #C8BCB6, #B3A39A);
 	background: -ms-repeating-linear-gradient(45deg, transparent, transparent 10px,
-		rgba(0, 0, 0, .05) 10px, rgba(0, 0, 0, .05) 20px),
+		rgba(0, 0, 0, .05) 10px, rgba(0, 0, 0, .05) 20px ),
 		-ms-linear-gradient(top, #C8BCB6, #B3A39A);
 	background: -o-repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0
-		, 0, 0, .05) 10px, rgba(0, 0, 0, .05) 20px),
+		, 0, 0, .05) 10px, rgba(0, 0, 0, .05) 20px ),
 		-o-linear-gradient(top, #C8BCB6, #B3A39A);
 	background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,
-		0, 0, .05) 10px, rgba(0, 0, 0, .05) 20px),
+		0, 0, .05) 10px, rgba(0, 0, 0, .05) 20px ),
 		linear-gradient(top, #C8BCB6, #B3A39A);
 	-moz-box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.5) inset, 0 2px 2px 2px
 		#1F1F1F inset;
@@ -469,7 +471,7 @@ fieldset#inputs:before { /* couture autour des inputs */
 	border-radius: 3px;
 	color: #f6f6f6;
 	content: 'შეტყობინების წაშლა';
-	font: bold 15px/25px sans-serif;
+	font: bold 10px/20px sans-serif;
 	height: 30px;
 	left: 50%;
 	margin-left: -60px;
@@ -501,7 +503,7 @@ fieldset#inputs:before { /* couture autour des inputs */
 	background-color: #c4453c;
 	background-image: linear-gradient(135deg, transparent, transparent 25%, hsla(0, 0%, 0%, .1
 		) 25%, hsla(0, 0%, 0%, .1) 50%, transparent 50%, transparent 75%,
-		hsla(0, 0%, 0%, .1) 75%, hsla(0, 0%, 0%, .1));
+		hsla(0, 0%, 0%, .1) 75%, hsla(0, 0%, 0%, .1) );
 	background-size: 20px 20px;
 	box-shadow: 0 5px 0 hsla(0, 0%, 0%, .1);
 	color: #f6f6f6;
@@ -522,27 +524,64 @@ keyframes alert { 0% {
 50%
 {
 opacity
+
+
+
+
+
+
+
+
 :
+
+
+
+
  
+
+
+
+
 1;
 }
 100%
 {
 top
+
+
+
+
+
+
+
+
 :
+
+
+
+
  
+
+
+
+
 0;
 }
 }
 </style>
 </head>
 <%
-	if (request.getParameterNames().hasMoreElements()
-			&& request.getParameter("error").equals("1")) {
- %>
- 	<div id="alert">
-		<a class="alert" href="login.jsp">შეცდომა მოხდა სისტემაში შესვლის დროს!</a>
-	</div><%
+	if (request.getParameterNames().hasMoreElements()){
+		request.setAttribute("user",null);
+		if (request.getParameter("error").equals("1")){
+				
+%>
+<div id="alert">
+	<a class="alert" href="login.jsp">შეცდომა მოხდა სისტემაში შესვლის
+		დროს!</a>
+</div>
+<%
+		}
 	}
 %>
 <body>

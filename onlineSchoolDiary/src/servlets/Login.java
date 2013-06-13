@@ -52,7 +52,6 @@ public class Login extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		UserManager userMan =  (UserManager)getServletContext().getAttribute("usermanager");
 		String userPassword = UserManager.getUserPassword(username);
 		if(userPassword.equals(passwordHash)){

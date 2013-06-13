@@ -24,7 +24,7 @@
 		<div id="menu">
 			<ul>
 				<li class="menuitem"><a href="/onlineSchoolDiary/adminPage.jsp">მთავარი გვერდი</a></li>
-				<li class="menuitem"><a href="#">სისტემიდან გამოსვლა</a></li>
+				<li class="menuitem"><a href="/onlineSchoolDiary/login.jsp">სისტემიდან გამოსვლა</a></li>
 			</ul>
 		</div>
 
