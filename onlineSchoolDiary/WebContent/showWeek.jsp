@@ -215,11 +215,14 @@ select {
 			%>
 			<%
 				if (j == n) {
+					%><td><%
+					if(markName>0){
 			%>
-			<td>
-				<%
-					out.print(markName + " (" + note + ") ");
-				%>
+			<b><big><%=markName%></big></b>
+			<% } %>
+			<form name=myform style="float: right;">
+				<textarea name=mytextarea style="float: right;" cols="3" rows="1" readonly><%=note%></textarea>
+			</form>
 			</td>
 
 			<%
@@ -269,9 +272,9 @@ select {
 								if (j == noteN) {
 			%>
 			<td>
-				<%
-					out.println(homeWork);
-				%>
+			<form name=myform style="float: right;">
+				<textarea name=mytextarea style="float: right;" cols="8" rows="2" readonly><%=homeWork%></textarea>
+			</form>
 			</td>
 
 			<%

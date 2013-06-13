@@ -16,10 +16,11 @@
 <%@page import=" java.sql.Statement"%>
 <%@page import=" java.sql.ResultSet"%>
 <%@page import="classes.Mark"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <head>
 <style>
 body {
@@ -96,7 +97,6 @@ select {
 	background-color: #fff;
 }
 </style>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 
 <%
@@ -109,24 +109,39 @@ select {
 			.getAttribute("studentmanager");
 	List<Mark> ar = st.getSubjectMarks(studentId, sb.getSubjectId());
 	Collections.sort(ar,new markComperator());
+	int sum = 0;
+	int countity = 0;
 	%>
 	<table border="8" id="table-2">
 
 
 		<tr>
-			<td>Subject</td>
+			<th>Student</th>
 	<%
 	for(int i = 0; i < ar.size(); i++) { 
+		if(ar.get(i).mark==0) continue;
 	%>
-		<td> <%out.println(new SimpleDateFormat("yyyy-MM-dd").format(ar.get(i).mark_date));%></td>
+		<th> <%out.println(new SimpleDateFormat("yyyy-MM-dd").format(ar.get(i).mark_date));%></th>
 		<% 	
 	}%>
+	
+	<th><b><big>საშუალო ქულა</big></b></th>
 	</tr>
 	<tr>
 	<td><%out.println(sb.getSubjectName()); %></td>
-	<%for(int i = 0; i < ar.size(); i++) { %>
+	<%for(int i = 0; i < ar.size(); i++) { 
+		if(ar.get(i).mark==0) continue;
+	%>
 		<td><%out.print(ar.get(i).getMark());%></td>
-		<% }
+		<% 
+		sum+=ar.get(i).mark;
+		countity++;
+	}
+	if(countity>0 && sum > 0){
+	%><th><b><big><%=sum/countity%></big></b></th><%
+	}else{
+		%><th><b><big>?</big></b></th><%
+	}
 %>
 	</tr>
 <title><%=sb.subject_name%></title>
