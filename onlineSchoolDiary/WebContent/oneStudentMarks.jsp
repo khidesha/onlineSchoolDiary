@@ -1,20 +1,20 @@
 
 
-<%@page import="classes.markComperator"%>
+<%@page import="classes.MarkComperator"%>
 <%@page import="classes.DayComment"%>
 <%@page import="classes.StudentManager"%>
 <%@page import="java.util.*"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="classes.Student"%>
 <%@page import="java.util.Date"%>
-<%@page import="classes.teacherManager"%>
+<%@page import="classes.TeacherManager"%>
 <%@page import="classes.Subject"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="classes.DBManager"%>
 <%@page import="classes.User"%>
 <%@page import="classes.SubjectManager"%>
-<%@page import=" java.sql.Statement"%>
-<%@page import=" java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.ResultSet"%>
 <%@page import="classes.Mark"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -105,13 +105,13 @@ select {
  	int subjectID = (Integer)ses.getAttribute("subjectID");
 	int studentId = stud.getUserId(); 
 	StudentManager st = (StudentManager) getServletContext()
-			.getAttribute("studentmanager");
+	.getAttribute("studentmanager");
 	Subject subj = SubjectManager.getSubject(subjectID);
 	List<Mark> ar = st.getSubjectMarks(studentId, subjectID);
-	Collections.sort(ar,new markComperator());
+	Collections.sort(ar,new MarkComperator());
 	int sum = 0;
 	int countity = 0;
-	%>
+%>
 	<table border="8" id="table-2">
 
 

@@ -1,20 +1,20 @@
 
 
-<%@page import="classes.markComperator"%>
+<%@page import="classes.MarkComperator"%>
 <%@page import="classes.DayComment"%>
 <%@page import="classes.StudentManager"%>
 <%@page import="java.util.*"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="classes.Student"%>
 <%@page import="java.util.Date"%>
-<%@page import="classes.teacherManager"%>
+<%@page import="classes.TeacherManager"%>
 <%@page import="classes.Subject"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="classes.DBManager"%>
 <%@page import="classes.User"%>
 <%@page import="classes.SubjectManager"%>
-<%@page import=" java.sql.Statement"%>
-<%@page import=" java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.ResultSet"%>
 <%@page import="classes.Mark"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -101,17 +101,17 @@ select {
 
 <%
 	Subject sb = SubjectManager.getSubject(Integer.parseInt(request
-			.getParameter("subjectID")));
+	.getParameter("subjectID")));
 	HttpSession ses = request.getSession();
 	User user = (User) ses.getAttribute("user");
 	int studentId = user.getUserId(); 
 	StudentManager st = (StudentManager) getServletContext()
-			.getAttribute("studentmanager");
+	.getAttribute("studentmanager");
 	List<Mark> ar = st.getSubjectMarks(studentId, sb.getSubjectId());
-	Collections.sort(ar,new markComperator());
+	Collections.sort(ar,new MarkComperator());
 	int sum = 0;
 	int countity = 0;
-	%>
+%>
 	<table border="8" id="table-2">
 
 

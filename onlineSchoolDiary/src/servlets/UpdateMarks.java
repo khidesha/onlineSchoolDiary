@@ -22,13 +22,13 @@ import classes.MarkManager;
  * Servlet implementation class updateMarks
  */
 @WebServlet("/updateMarks")
-public class updateMarks extends HttpServlet {
+public class UpdateMarks extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public updateMarks() {
+	public UpdateMarks() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

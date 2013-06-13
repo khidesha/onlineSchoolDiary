@@ -18,13 +18,13 @@ import classes.UserManager;
  * Servlet implementation class editStudent
  */
 @WebServlet("/editStudent")
-public class editStudent extends HttpServlet {
+public class EditStudent extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public editStudent() {
+    public EditStudent() {
         super();
         // TODO Auto-generated constructor stub
     }

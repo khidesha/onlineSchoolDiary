@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,20 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import classes.GroupManager;
+import classes.Sha1Hash;
 import classes.User;
+import classes.UserManager;
 
 /**
- * Servlet implementation class editGroup
+ * Servlet implementation class editTeacher
  */
-@WebServlet("/editGroup")
-public class editGroup extends HttpServlet {
+@WebServlet("/editTeacher")
+public class EditTeacher extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public editGroup() {
+    public EditTeacher() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,13 +40,22 @@ public class editGroup extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String groupName = request.getParameter("groupname");
-		int groupID = Integer.parseInt(request.getParameter("group"));
+		String name = request.getParameter("username");
+		String password = request.getParameter("password");
+		String fullname = request.getParameter("fullname");
+		String passwordHash = "";
+		try {
+			passwordHash = Sha1Hash.SHA1(password);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		User tmp = (User)request.getSession().getAttribute("user");
 		int schoolID = tmp.getSchoolId();
-		GroupManager grManager = (GroupManager)getServletContext().getAttribute("groupmanager");
-		grManager.editGroup(groupName, groupID, schoolID);
-		RequestDispatcher dispatch = request.getRequestDispatcher("/editGroup.jsp");
+		UserManager addUser = (UserManager)getServletContext().getAttribute("usermanager");
+		int teacherId = Integer.parseInt(request.getParameter("teacher"));
+		addUser.editUser(teacherId, name, schoolID, passwordHash, "1", fullname, 0);
+		RequestDispatcher dispatch = request.getRequestDispatcher("/editTeacher.jsp");
 		dispatch.forward(request, response);
 	}
 
