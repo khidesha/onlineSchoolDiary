@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.Enumeration;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,7 +30,14 @@ public class LogOut extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		HttpSession session = request.getSession();
+		Enumeration<String> attributes = session.getAttributeNames();
+		while(attributes.hasMoreElements()){
+			String tmp = attributes.nextElement();
+			session.removeAttribute(tmp);
+		}
+	
+		session.invalidate();
 		RequestDispatcher dispatch = request.getRequestDispatcher("/login.jsp");
 		dispatch.forward(request, response);
 	}
@@ -38,7 +46,7 @@ public class LogOut extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		doGet(request, response);
 	}
 
 }

@@ -34,7 +34,7 @@
 		<div id="menu">
 			<ul>
 				<li class="menuitem"><a href="/onlineSchoolDiary/teacherLogIn.jsp">მთავარი გვერდი</a></li>
-				<li class="menuitem"><a href="/onlineSchoolDiary/LogOut">სისტემიდან გამოსვლა</a></li>
+				<li class="menuitem"><a href="/onlineSchoolDiary/logOut">სისტემიდან გამოსვლა</a></li>
 			</ul>
 		</div>
 

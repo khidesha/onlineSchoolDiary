@@ -33,7 +33,7 @@
 				<li class="menuitem"><a
 					href="/onlineSchoolDiary/studentLogIn.jsp">მთავარი გვერდი</a></li>
 				<li class="menuitem"><FORM>
-						<small><a href='/onlineSchoolDiary/LogOut'>სისტემიდან
+						<small><a href='/onlineSchoolDiary/logOut'>სისტემიდან
 								გამოსვლა</a></small>
 					</FORM>
 				</li>

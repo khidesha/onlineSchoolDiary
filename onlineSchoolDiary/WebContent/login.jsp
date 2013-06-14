@@ -1,3 +1,4 @@
+<%@page import="java.util.Enumeration"%>
 <%@ page import="java.util.Map"%>
 <%@page import="java.util.Iterator"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -571,6 +572,7 @@ top
 </style>
 </head>
 <%
+
 	if (request.getParameterNames().hasMoreElements()){
 		if (request.getParameter("error").equals("1")){
 				
