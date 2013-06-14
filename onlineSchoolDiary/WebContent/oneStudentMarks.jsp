@@ -20,7 +20,6 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <head>
 <style>
 body {
@@ -97,17 +96,18 @@ select {
 	background-color: #fff;
 }
 </style>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <%
-	Subject sb = SubjectManager.getSubject(Integer.parseInt(request
-	.getParameter("subjectID")));
+	Student stud = StudentManager.getStudent(Integer.parseInt(request
+		.getParameter("studentID")));
 	HttpSession ses = request.getSession();
-	User user = (User) ses.getAttribute("user");
-	int studentId = user.getUserId(); 
+ 	int subjectID = (Integer)ses.getAttribute("subjectID");
+	int studentId = stud.getUserId(); 
 	StudentManager st = (StudentManager) getServletContext()
 	.getAttribute("studentmanager");
-	List<Mark> ar = st.getSubjectMarks(studentId, sb.getSubjectId());
+	Subject subj = SubjectManager.getSubject(subjectID);
+	List<Mark> ar = st.getSubjectMarks(studentId, subjectID);
 	Collections.sort(ar,new MarkComperator());
 	int sum = 0;
 	int countity = 0;
@@ -128,7 +128,7 @@ select {
 	<th><b><big>საშუალო ქულა</big></b></th>
 	</tr>
 	<tr>
-	<td><%out.println(sb.getSubjectName()); %></td>
+	<td><%out.println(subj.getSubjectName()); %></td>
 	<%for(int i = 0; i < ar.size(); i++) { 
 		if(ar.get(i).mark==0) continue;
 	%>
@@ -144,7 +144,7 @@ select {
 	}
 %>
 	</tr>
-<title><%=sb.subject_name%></title>
+<title><%subj.getSubjectName();%></title>
 
 </head>
 <body>

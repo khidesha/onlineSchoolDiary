@@ -20,13 +20,13 @@ import classes.UserManager;
  * Servlet implementation class addTeacher
  */
 @WebServlet("/addTeacher")
-public class addTeacher extends HttpServlet {
+public class AddTeacher extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public addTeacher() {
+	public AddTeacher() {
 		super();
 	}
 

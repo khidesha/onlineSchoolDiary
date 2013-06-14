@@ -20,14 +20,14 @@
 		<select name="group" class="select">
 			<%
 				HttpSession ses = request.getSession();
-				User user = (User) ses.getAttribute("user");
-				int schoolId = user.getUserId();
-				schoolManager sm = (schoolManager) getServletContext()
-						.getAttribute("schoolmanager");
-				ArrayList<Group> arr = sm.getClasses(schoolId);
-				for (int i = 0; i < arr.size(); i++) {
-					out.println("<option value=" +arr.get(i).getClassId() +">" +arr.get(i).getClassId() +" "+ arr.get(i).getClassName()+"</option>");
-				}
+					User user = (User) ses.getAttribute("user");
+					int schoolId = user.getUserId();
+					SchoolManager sm = (SchoolManager) getServletContext()
+							.getAttribute("schoolmanager");
+					ArrayList<Group> arr = sm.getClasses(schoolId);
+					for (int i = 0; i < arr.size(); i++) {
+						out.println("<option value=" +arr.get(i).getClassId() +">" +arr.get(i).getClassId() +" "+ arr.get(i).getClassName()+"</option>");
+					}
 			%>
 		</select> 
 		

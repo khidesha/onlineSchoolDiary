@@ -572,7 +572,6 @@ top
 </head>
 <%
 	if (request.getParameterNames().hasMoreElements()){
-		request.setAttribute("user",null);
 		if (request.getParameter("error").equals("1")){
 				
 %>

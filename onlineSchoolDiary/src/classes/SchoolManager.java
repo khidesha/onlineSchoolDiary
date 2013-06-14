@@ -5,10 +5,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class schoolManager {
+public class SchoolManager {
 	static Statement statement;
 
-	public schoolManager(Statement statement) {
+	public SchoolManager(Statement statement) {
 		this.statement = statement;
 	}
 

@@ -1,6 +1,6 @@
 <%@page import="classes.GroupManager"%>
 <%@page import="classes.Group"%>
-<%@page import="classes.teacherManager"%>
+<%@page import="classes.TeacherManager"%>
 <%@page import="classes.Subject"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="classes.DBManager"%>
@@ -17,12 +17,12 @@
 </head>
 <body>
 <%
-		HttpSession ses = request.getSession();
+	HttpSession ses = request.getSession();
 		User user = (User) ses.getAttribute("user");
 		int teacherId = user.getUserId();
-		teacherManager tm = (teacherManager)getServletContext().getAttribute("teachermanager");
-		ArrayList<Subject> arr = tm.getSubjectes(teacherId);		
-	%>	
+		TeacherManager tm = (TeacherManager)getServletContext().getAttribute("teachermanager");
+		ArrayList<Subject> arr = tm.getSubjectes(teacherId);
+%>	
 	<div id="container">
 		<div id="header">
 			<h1>

@@ -11,8 +11,8 @@ import classes.UserManager;
 import classes.DBManager;
 import classes.GroupManager;
 import classes.SubjectManager;
-import classes.schoolManager;
-import classes.teacherManager;
+import classes.SchoolManager;
+import classes.TeacherManager;
 
 import com.mysql.jdbc.Statement;
 
@@ -53,9 +53,9 @@ public class lisener implements ServletContextListener {
 		arg0.getServletContext().setAttribute("commentmanager",
 				new DayCommentManager((Statement) manager.getStatement()));
 		arg0.getServletContext().setAttribute("teachermanager",
-				new teacherManager((Statement) manager.getStatement()));
+				new TeacherManager((Statement) manager.getStatement()));
 		arg0.getServletContext().setAttribute("schoolmanager",
-				new schoolManager((Statement) manager.getStatement()));
+				new SchoolManager((Statement) manager.getStatement()));
 		arg0.getServletContext().setAttribute("id_count", new Integer(1));
 		
 		arg0.getServletContext().setAttribute("studentmanager",

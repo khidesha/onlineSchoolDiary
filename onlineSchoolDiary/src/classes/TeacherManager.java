@@ -9,10 +9,10 @@ import java.util.Set;
 
 import javax.print.attribute.HashAttributeSet;
 
-public class teacherManager {
+public class TeacherManager {
 	static Statement statement;
 
-	public teacherManager(Statement statement) {
+	public TeacherManager(Statement statement) {
 		this.statement = statement;
 	}
 
