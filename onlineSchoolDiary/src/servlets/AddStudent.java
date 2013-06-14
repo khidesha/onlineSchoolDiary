@@ -55,7 +55,7 @@ public class AddStudent extends HttpServlet {
 		User tmp = (User)request.getSession().getAttribute("user");
 		int schoolID = tmp.getSchoolId();
 		UserManager addUser = (UserManager)getServletContext().getAttribute("usermanager");
-		int countID = UserManager.getUserCount()+1;
+		int countID = UserManager.getMaxID()+1;
 		if(UserManager.userNameAlreadyExists(username)){
 		}
 		else{

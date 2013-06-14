@@ -3,9 +3,9 @@ package classes;
 import java.sql.Date;
 
 public class DayComment {
-	public String date;
-	public String comment;
-	public int subject_id;
+	private String date;
+	private String comment;
+	private int subject_id;
 	
 	public DayComment(String date, String com, int subjectId) {
 		this.date = date;

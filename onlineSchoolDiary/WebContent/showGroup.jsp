@@ -68,7 +68,7 @@ select {
 	color: #4B4B4B;
 	background-color: #C8C8C8;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2),
-		to(#e3e3e3), color-stop(.6, #B3B3B3) );
+		to(#e3e3e3), color-stop(.6, #B3B3B3));
 	background-image: -moz-linear-gradient(top, #D6D6D6, #B0B0B0, #B3B3B3 90%);
 	border-bottom: solid 1px #999;
 }
@@ -147,7 +147,7 @@ select {
  		DayComment dc = DayCommentManager.getDayComment(
  				Integer.parseInt(request.getParameter("subjectID")),
  				monday);
- 		d = dc.comment;
+ 		d = dc.getComment();
  	}
  %> &nbsp;
 
@@ -168,7 +168,7 @@ select {
  		DayComment dc = DayCommentManager.getDayComment(
  				Integer.parseInt(request.getParameter("subjectID")),
  				new SimpleDateFormat("yyyy-MM-dd").format(c.getTime()));
- 		d = dc.comment;
+ 		d = dc.getComment();
  	}
  %> &nbsp;
 				<form action="/onlineSchoolDiary/updateMarks" method="POST">
@@ -188,7 +188,7 @@ select {
  		DayComment dc = DayCommentManager.getDayComment(
  				Integer.parseInt(request.getParameter("subjectID")),
  				new SimpleDateFormat("yyyy-MM-dd").format(c.getTime()));
- 		d = dc.comment;
+ 		d = dc.getComment();
  	}
  %> &nbsp;
 				<form action="/onlineSchoolDiary/updateMarks" method="POST">
@@ -208,7 +208,7 @@ select {
  		DayComment dc = DayCommentManager.getDayComment(
  				Integer.parseInt(request.getParameter("subjectID")),
  				new SimpleDateFormat("yyyy-MM-dd").format(c.getTime()));
- 		d = dc.comment;
+ 		d = dc.getComment();
  	}
  %> &nbsp;
 				<form action="/onlineSchoolDiary/updateMarks" method="POST">
@@ -230,7 +230,7 @@ select {
  		DayComment dc = DayCommentManager.getDayComment(
  				Integer.parseInt(request.getParameter("subjectID")),
  				new SimpleDateFormat("yyyy-MM-dd").format(c.getTime()));
- 		d = dc.comment;
+ 		d = dc.getComment();
  	}
  %> &nbsp;
 				<form action="/onlineSchoolDiary/updateMarks" method="POST">
@@ -246,7 +246,8 @@ select {
 				ArrayList<Mark> markArr = sm.getMarks(i);
 		%>
 		<tr>
-			<td><a href="oneStudentMarks.jsp?studentID=<%=StudentManager.getStudent(i).getUserId()%>" ><%=StudentManager.getStudent(i).getUsername()%></a></td>
+			<td><a
+				href="oneStudentMarks.jsp?studentID=<%=StudentManager.getStudent(i).getUserId()%>"><%=StudentManager.getStudent(i).getUsername()%></a></td>
 			<%
 				Date date = null;
 					int markName = -1;
@@ -258,7 +259,7 @@ select {
 						int subjectId = Integer.parseInt(request
 								.getParameter("subjectID"));
 						if (mark.getSubjectId() == subjectId) {
-							date = mark.mark_date;
+							date = mark.getMarkDate();
 							String markDate = new SimpleDateFormat("yyyy-MM-dd")
 									.format(date);
 							if (((markDate.compareTo(monday) >= 0) && (markDate
@@ -326,12 +327,12 @@ select {
 							if (j != daysWeek.length) {
 								count = 0;
 								for (int m = 0; m < subjectMark.size(); m++) {
-									if (subjectMark.get(m).mark_date.getDay() == j + 1) {
+									if (subjectMark.get(m).getMarkDate().getDay() == j + 1) {
 										count++;
 										Mark mark1 = subjectMark.get(m);
-										markName = mark1.mark;
-										note = mark1.comment;
-										date = mark1.mark_date;
+										markName = mark1.getMark();
+										note = mark1.getComment();
+										date = mark1.getMarkDate();
 										if (date != null) {
 											c.setTime(date);
 											dayOfWeek = c.get(Calendar.DAY_OF_WEEK);

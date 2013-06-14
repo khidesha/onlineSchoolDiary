@@ -42,7 +42,7 @@ public class AddGroup extends HttpServlet {
 		User tmp = (User)request.getSession().getAttribute("user");
 		int schoolID = tmp.getSchoolId();
 		GroupManager grManager = (GroupManager)getServletContext().getAttribute("groupmanager");
-		int groupID = GroupManager.getGroupCount() + 1;
+		int groupID = GroupManager.getMaxID() + 1;
 		grManager.createGroup(groupName, groupID, schoolID);
 		RequestDispatcher dispatch = request.getRequestDispatcher("/addGroup.jsp");
 		dispatch.forward(request, response);

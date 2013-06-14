@@ -25,7 +25,7 @@
 						out.println("<option value=" + arr.get(i).getUserId() + ">"
 								+ arr.get(i).getUserId() + " "
 								+ arr.get(i).getUsername() + " Class: "
-								+ arr.get(i).class_id + "</option>");
+								+ arr.get(i).getClassId() + "</option>");
 					}
 			%>
 		</select>

@@ -141,4 +141,18 @@ public class MarkManager {
 		}
 		return mark;
 	}
+
+	public static int getMaxID(){
+		int max = 0;
+		try {
+			ResultSet rs = statement.executeQuery("Select MAX(mark_id) as mark_id from mark;");
+			rs.next();
+			max = rs.getInt("mark_id");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return max;
+	}
+
 }

@@ -43,7 +43,7 @@ public class AddSubject extends HttpServlet {
 		int teacherID = Integer.parseInt(request.getParameter("teacherID"));
 		int groupID = Integer.parseInt(request.getParameter("groupID"));
 		SubjectManager subject = (SubjectManager)getServletContext().getAttribute("subjectmanager");
-		int subjectID = SubjectManager.getSubjectCount() + 1;
+		int subjectID = SubjectManager.getMaxID() + 1;
 		User tmp = (User)request.getSession().getAttribute("user");
 		int schoolID = tmp.getSchoolId();
 		subject.createSubject(subjectID, subjectName, teacherID, groupID,schoolID);

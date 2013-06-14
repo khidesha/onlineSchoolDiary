@@ -84,5 +84,20 @@ public class SubjectManager {
 		}
 		return count;
 	}
+	
+
+	public static int getMaxID(){
+		int max = 0;
+		try {
+			ResultSet rs = statement.executeQuery("Select MAX(subject_id) as subject_id from subjects;");
+			rs.next();
+			max = rs.getInt("subject_id");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return max;
+	}
+
 
 }

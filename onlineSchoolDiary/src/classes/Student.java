@@ -1,7 +1,7 @@
 package classes;
 
 public class Student extends User {
-	public int class_id;
+	private int class_id;
 	
 	public Student(int userId, String userName, int schoolId, int classId, int status) {
 		super(userId, userName, schoolId, status);

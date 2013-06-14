@@ -98,11 +98,11 @@ public class UpdateMarks extends HttpServlet {
 						Integer.toString(i)).trim());
 				comment = request.getParameter(Integer.toString(i) + "C");
 				if (MarkManager.markAlreadyExists(subjectID, i, date)) {
-					markID = MarkManager.getMarkByDate(subjectID, i, date).mark_id;
+					markID = MarkManager.getMarkByDate(subjectID, i, date).getMarkId();
 					markManager.editMark(markID, subjectID, i, date, mark,
 							comment);
 				} else {
-					markID = MarkManager.getMarkID();
+					markID = MarkManager.getMaxID();
 					markManager.createMark(markID, subjectID, i, date, mark,
 							comment);
 				}
@@ -112,18 +112,18 @@ public class UpdateMarks extends HttpServlet {
 								.length() > 2) {
 					comment = request.getParameter(Integer.toString(i) + "C");
 					if (markManager.markAlreadyExists(subjectID, i, date)) {
-						markID = MarkManager.getMarkByDate(subjectID, i, date).mark_id;
+						markID = MarkManager.getMarkByDate(subjectID, i, date).getMarkId();
 						markManager.deleteMark(markID);
 						markManager.createOnlyComment(markID, subjectID, i,
 								date, comment);
 					} else {
-						markID = MarkManager.getMarkID();
+						markID = MarkManager.getMaxID();
 						markManager.createOnlyComment(markID, subjectID, i,
 								date, comment);
 					}
 				} else if (request.getParameter(Integer.toString(i)).trim() != null
 						&& MarkManager.markAlreadyExists(subjectID, i, date)) {
-					markID = MarkManager.getMarkByDate(subjectID, i, date).mark_id;
+					markID = MarkManager.getMarkByDate(subjectID, i, date).getMarkId();
 					markManager.deleteMark(markID);
 				}
 			}

@@ -165,6 +165,19 @@ public class UserManager {
 		}
 		return count;
 	}
+	
+	public static int getMaxID(){
+		int max = 0;
+		try {
+			ResultSet rs = statement.executeQuery("Select MAX(user_id) as user_id from users;");
+			rs.next();
+			max = rs.getInt("user_id");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return max;
+	}
 
 	
 	public static boolean userNameAlreadyExists(String username){

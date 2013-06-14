@@ -5,12 +5,12 @@ import java.util.Comparator;
 import java.util.Date;
 
 public class Mark{
-	public int mark_id;
-	public int subject_id;
-	public int student_id;
-	public Date mark_date;
-	public int mark;
-	public String comment;
+	private int mark_id;
+	private int subject_id;
+	private int student_id;
+	private Date mark_date;
+	private int mark;
+	private String comment;
 	
 	public Mark(int markId, int subjectId, int studentId, Date markDate, int mark, String comment) {
 		this.mark_id = markId;

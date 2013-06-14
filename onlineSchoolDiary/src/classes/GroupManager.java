@@ -141,4 +141,19 @@ public class GroupManager {
 		return count;
 	}
 
+
+	public static int getMaxID(){
+		int max = 0;
+		try {
+			ResultSet rs = statement.executeQuery("Select MAX(class_id) as class_id from class;");
+			rs.next();
+			max = rs.getInt("class_id");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return max;
+	}
+
+	
 }

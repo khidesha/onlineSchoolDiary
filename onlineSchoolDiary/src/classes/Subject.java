@@ -1,11 +1,11 @@
 package classes;
 
 public class Subject {
-	public int subject_id;
-	public String subject_name;
-	public int teacher_id;
-	public int class_id;
-	public int school_id;
+	private int subject_id;
+	private String subject_name;
+	private int teacher_id;
+	private int class_id;
+	private int school_id;
 	
 	public Subject(int subjectId, String subjectName, int teacherId, int classId, int schoolId) {
 		this.subject_id = subjectId;
