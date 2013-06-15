@@ -12,6 +12,10 @@
 <body>
 	<%
 		HttpSession ses = request.getSession();
+		if(ses == null){
+			RequestDispatcher dispach = request.getRequestDispatcher("login.jsp");
+			dispach.forward(request, response);
+		}
 		Student student = (Student) ses.getAttribute("user");
 		int classId = student.getClassId();
 		StudentManager sm = (StudentManager) getServletContext()

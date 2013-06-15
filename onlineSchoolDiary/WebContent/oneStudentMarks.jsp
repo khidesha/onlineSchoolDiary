@@ -119,9 +119,9 @@ select {
 			<th>Student</th>
 	<%
 	for(int i = 0; i < ar.size(); i++) { 
-		if(ar.get(i).mark==0) continue;
+		if(ar.get(i).getMark()==0) continue;
 	%>
-		<th> <%out.println(new SimpleDateFormat("yyyy-MM-dd").format(ar.get(i).mark_date));%></th>
+		<th> <%out.println(new SimpleDateFormat("yyyy-MM-dd").format(ar.get(i).getMarkDate()));%></th>
 		<% 	
 	}%>
 	
@@ -130,11 +130,11 @@ select {
 	<tr>
 	<td><%out.println(subj.getSubjectName()); %></td>
 	<%for(int i = 0; i < ar.size(); i++) { 
-		if(ar.get(i).mark==0) continue;
+		if(ar.get(i).getMark()==0) continue;
 	%>
 		<td><%out.print(ar.get(i).getMark());%></td>
 		<% 
-		sum+=ar.get(i).mark;
+		sum+=ar.get(i).getMark();
 		countity++;
 	}
 	if(countity>0 && sum > 0){

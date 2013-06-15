@@ -103,7 +103,15 @@ select {
 	Subject sb = SubjectManager.getSubject(Integer.parseInt(request
 	.getParameter("subjectID")));
 	HttpSession ses = request.getSession();
+	if(ses == null){
+		RequestDispatcher dispach = request.getRequestDispatcher("login.jsp");
+		dispach.forward(request, response);
+	}
 	User user = (User) ses.getAttribute("user");
+	if(user == null){
+		RequestDispatcher dispach = request.getRequestDispatcher("error.html");
+		dispach.forward(request, response);
+	}
 	int studentId = user.getUserId(); 
 	StudentManager st = (StudentManager) getServletContext()
 	.getAttribute("studentmanager");
@@ -119,9 +127,9 @@ select {
 			<th>Student</th>
 	<%
 	for(int i = 0; i < ar.size(); i++) { 
-		if(ar.get(i).mark==0) continue;
+		if(ar.get(i).getMark()==0) continue;
 	%>
-		<th> <%out.println(new SimpleDateFormat("yyyy-MM-dd").format(ar.get(i).mark_date));%></th>
+		<th> <%out.println(new SimpleDateFormat("yyyy-MM-dd").format(ar.get(i).getMarkDate()));%></th>
 		<% 	
 	}%>
 	
@@ -130,11 +138,11 @@ select {
 	<tr>
 	<td><%out.println(sb.getSubjectName()); %></td>
 	<%for(int i = 0; i < ar.size(); i++) { 
-		if(ar.get(i).mark==0) continue;
+		if(ar.get(i).getMark()==0) continue;
 	%>
 		<td><%out.print(ar.get(i).getMark());%></td>
 		<% 
-		sum+=ar.get(i).mark;
+		sum+=ar.get(i).getMark();
 		countity++;
 	}
 	if(countity>0 && sum > 0){
@@ -144,7 +152,7 @@ select {
 	}
 %>
 	</tr>
-<title><%=sb.subject_name%></title>
+<title><%=sb.getSubjectName()%></title>
 
 </head>
 <body>

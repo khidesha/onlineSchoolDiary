@@ -152,7 +152,7 @@ public class MarkManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return max;
+		return max+1;
 	}
 
 }

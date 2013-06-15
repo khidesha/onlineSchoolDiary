@@ -101,6 +101,10 @@ select {
 	<%
 		HttpSession ses = request.getSession();
 		Student student = (Student) ses.getAttribute("user");
+		if(student == null){
+			RequestDispatcher dispach = request.getRequestDispatcher("error.html");
+			dispach.forward(request, response);
+		}
 		int classId = student.getClassId();
 		StudentManager sm = (StudentManager) getServletContext()
 				.getAttribute("studentmanager");
@@ -179,9 +183,9 @@ select {
 					ArrayList<Mark> subjectMark = new ArrayList();
 					for (int k = 0; k < markArr.size(); k++) {
 						Mark mark = markArr.get(k);
-						subjectId = arr.get(i).subject_id;
+						subjectId = arr.get(i).getSubjectId();
 						if (mark.getSubjectId() == subjectId) {
-							date = mark.mark_date;
+							date = mark.getMarkDate();
 							String markDate = new SimpleDateFormat("yyyy-MM-dd")
 									.format(date);
 							if (((markDate.compareTo(monday) >= 0) && (markDate
@@ -204,9 +208,9 @@ select {
 						for (int j = 0; j < 5; j++) {
 							for (int m = 0; m < subjectMark.size(); m++) {
 								Mark mark1 = subjectMark.get(m);
-								markName = mark1.mark;
-								note = mark1.comment;
-								date = mark1.mark_date;
+								markName = mark1.getMark();
+								note = mark1.getComment();
+								date = mark1.getMarkDate();
 								if (date != null) {
 									c.setTime(date);
 									dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
@@ -259,8 +263,8 @@ select {
 				}}
 					for (int j = 0; j < 5; j++) {
 						for (int l = 0; l < noteArr.size(); l++) {
-							homeWork = noteArr.get(l).comment;
-							String noteD = noteArr.get(l).date;
+							homeWork = noteArr.get(l).getComment();
+							String noteD = noteArr.get(l).getDate();
 							SimpleDateFormat dateFormat = new SimpleDateFormat(
 									"yyyy-MM-dd");
 							Date noteDate = dateFormat.parse(noteD);
